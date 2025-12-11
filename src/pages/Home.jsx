@@ -23,7 +23,7 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-6 overflow-hidden">
+            <section className="relative min-h-screen flex items-center justify-center py-32 px-6 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-background to-background pointer-events-none"></div>
                 <div className="max-w-5xl mx-auto text-center relative z-10">
                     <motion.h1
