@@ -30,7 +30,7 @@ export default function Install() {
                         <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Supported Versions</div>
                         <div className="text-white font-medium flex items-center gap-2">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" className="w-5 h-5 opacity-80" alt="Godot" />
-                            Godot 4.2 and higher
+                            Godot 4.5 and higher
                         </div>
                     </div>
                     <div className="bg-zinc-900/30 border border-zinc-800 p-4 rounded-xl">
@@ -73,7 +73,7 @@ export default function Install() {
                                 Grab the latest <span className="text-zinc-200">gaze_ai.zip</span> from our GitHub releases.
                             </p>
                             <a
-                                href="https://github.com/Start-Gaze/GazeAI/releases"
+                                href="https://github.com/RusithWelisara/GAZE-Plugin"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-100 hover:bg-white text-zinc-900 rounded-lg font-medium transition-colors"
