@@ -94,9 +94,13 @@ export default function Install() {
                                 Unzip the folder into your project's <span className="text-zinc-200 font-mono text-sm">addons/</span> directory.
                             </p>
                             <CodeBlock>
-                                <span className="text-zinc-500"># Your file structure MUST look like this:</span><br />
-                                my_godot_project/project.godot<br />
-                                my_godot_project/addons/<span className="text-violet-400">gaze_ai/</span>plugin.cfg
+                                <div className="leading-relaxed">
+                                    my_godot_project/<br />
+                                    ├── project.godot<br />
+                                    └── addons/<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;└── <span className="text-violet-400">gaze_ai/</span><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── plugin.cfg
+                                </div>
                             </CodeBlock>
                         </div>
 
