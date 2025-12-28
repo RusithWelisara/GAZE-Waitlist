@@ -89,7 +89,7 @@ export default function Install() {
                             </p>
                             <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg flex gap-3 text-amber-200/80 text-sm">
                                 <AlertCircle className="w-5 h-5 shrink-0" />
-                                <p>Supported Versions: Godot 4.2+</p>
+                                <p>Supported Versions: Godot 4.5+</p>
                             </div>
                         </div>
                     </div>

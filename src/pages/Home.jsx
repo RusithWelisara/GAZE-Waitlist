@@ -15,19 +15,30 @@ export default function Home() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight"
+                        className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-tight"
                     >
-                        AI-powered code changes for Godot — <span className="text-zinc-500">reviewed, diffed, and under your control.</span>
+                        AI-powered code changes for Godot — <span className="text-zinc-500">reviewed before they touch your project.</span>
                     </motion.h1>
 
-                    <motion.p
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+                        className="flex flex-wrap items-center justify-center gap-4 text-zinc-400 mb-12 font-mono text-sm md:text-base"
                     >
-                        GazeAI is a Godot editor plugin that turns natural language into safe, reviewable patches — not blind code generation.
-                    </motion.p>
+                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
+                            <FileDiff className="w-4 h-4 text-violet-500" /> Patch-based
+                        </span>
+                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
+                            <ArrowRight className="w-4 h-4 text-violet-500" /> Diff-visible
+                        </span>
+                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
+                            <Check className="w-4 h-4 text-violet-500" /> Manual apply
+                        </span>
+                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
+                            <ShieldAlert className="w-4 h-4 text-violet-500" /> Editor-native
+                        </span>
+                    </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -49,9 +60,44 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* 2. VISUAL PROOF (Focused Flow Mockup) */}
-            <section className="px-6 pb-32">
+            {/* 2. WHAT THIS IS NOT */}
+            <section className="py-12 px-6 border-b border-zinc-900">
+                <div className="max-w-4xl mx-auto">
+                    <div className="bg-zinc-900/30 border border-zinc-800 rounded-xl p-8 text-center sm:text-left sm:flex items-center justify-between gap-8">
+                        <div>
+                            <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">GazeAI is NOT:</h3>
+                            <ul className="space-y-2 text-zinc-400">
+                                <li className="flex items-center gap-2 justify-center sm:justify-start">
+                                    <X className="w-4 h-4 text-red-500" /> Auto-applied AI code
+                                </li>
+                                <li className="flex items-center gap-2 justify-center sm:justify-start">
+                                    <X className="w-4 h-4 text-red-500" /> A black box generator
+                                </li>
+                                <li className="flex items-center gap-2 justify-center sm:justify-start">
+                                    <X className="w-4 h-4 text-red-500" /> A replacement for thinking
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="hidden sm:block w-px h-24 bg-zinc-800"></div>
+                        <div className="mt-6 sm:mt-0 max-w-sm text-zinc-500 text-sm">
+                            <p>
+                                We built this for developers who want to speed up their workflow without losing control of their codebase.
+                                It requires you to know what you are doing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* 3. VISUAL PROOF (Focused Flow Mockup) */}
+            <section className="px-6 py-24">
                 <div className="max-w-5xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-white mb-4">You see exactly what changes.</h2>
+                        <p className="text-zinc-400">No surprises. No hidden deletions.</p>
+                    </div>
+
                     <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl relative">
                         {/* Fake Window Header */}
                         <div className="bg-zinc-900 px-4 py-2 border-b border-zinc-800 flex items-center gap-2">
@@ -62,9 +108,9 @@ export default function Home() {
                         </div>
 
                         {/* Mock Interface Content */}
-                        <div className="flex h-[500px] font-mono text-sm">
+                        <div className="flex flex-col md:flex-row h-[500px] font-mono text-sm">
                             {/* Left Pane: Prompt */}
-                            <div className="w-1/3 border-r border-zinc-800 p-4 bg-zinc-900/30 flex flex-col">
+                            <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 p-4 bg-zinc-900/30 flex flex-col">
                                 <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold mb-4">Prompt</div>
                                 <div className="bg-zinc-950 p-3 rounded text-zinc-300 mb-4 border border-zinc-800">
                                     "Make the enemy flash red when taking damage"
@@ -107,15 +153,45 @@ export default function Home() {
                             Live Update Preview
                         </div>
                     </div>
-                    <p className="text-center text-zinc-500 mt-4 text-sm">
-                        * Real screenshot of GazeAI diff inspector
-                    </p>
                 </div>
             </section>
 
-            {/* 3. PROBLEM vs SOLUTION */}
-            <section className="py-24 px-6 bg-zinc-900/20 border-y border-zinc-800">
+            {/* 4. SAFETY SPECS (THE BORING PART) */}
+            <section className="py-16 px-6 bg-zinc-900/20 border-t border-zinc-800">
+                <div className="max-w-4xl mx-auto">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+                        <h2 className="text-2xl font-bold text-white">Reliability & Safety</h2>
+                        <div className="h-px bg-zinc-800 flex-1 w-full mx-8 hidden md:block"></div>
+                        <Link to="/trust" className="text-violet-400 hover:text-white text-sm">Read full policy →</Link>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div className="space-y-2">
+                            <div className="text-zinc-500 text-xs uppercase font-bold tracking-wider">Privacy</div>
+                            <div className="font-medium text-zinc-200">Files sent only on request</div>
+                        </div>
+                        <div className="space-y-2">
+                            <div className="text-zinc-500 text-xs uppercase font-bold tracking-wider">Scanning</div>
+                            <div className="font-medium text-zinc-200">No background indexing</div>
+                        </div>
+                        <div className="space-y-2">
+                            <div className="text-zinc-500 text-xs uppercase font-bold tracking-wider">Control</div>
+                            <div className="font-medium text-zinc-200">Undo/Redo supported</div>
+                        </div>
+                        <div className="space-y-2">
+                            <div className="font-medium text-zinc-200">No silent changes</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* 5. PROBLEM vs SOLUTION */}
+            <section className="py-24 px-6">
                 <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-white mb-4">Why we built this</h2>
+                    </div>
                     <div className="grid md:grid-cols-2 gap-12">
                         {/* The Problem */}
                         <div className="space-y-8">
@@ -125,24 +201,17 @@ export default function Home() {
                             </h2>
                             <ul className="space-y-6">
                                 <li className="flex gap-4">
-                                    <X className="w-6 h-6 text-red-500 shrink-0" />
+                                    <div className="mt-1"><X className="w-5 h-5 text-red-500" /></div>
                                     <div>
                                         <h3 className="font-bold text-zinc-200">AI writes wrong code</h3>
-                                        <p className="text-zinc-400">LLMs hallucinate. If you blindly paste their output, you break your project.</p>
+                                        <p className="text-zinc-400 text-sm mt-1">LLMs hallucinate. If you blindly paste their output, you break your project.</p>
                                     </div>
                                 </li>
                                 <li className="flex gap-4">
-                                    <X className="w-6 h-6 text-red-500 shrink-0" />
-                                    <div>
-                                        <h3 className="font-bold text-zinc-200">Silent breaking changes</h3>
-                                        <p className="text-zinc-400">You don't know what changed until runtime errors crash your game.</p>
-                                    </div>
-                                </li>
-                                <li className="flex gap-4">
-                                    <X className="w-6 h-6 text-red-500 shrink-0" />
+                                    <div className="mt-1"><X className="w-5 h-5 text-red-500" /></div>
                                     <div>
                                         <h3 className="font-bold text-zinc-200">Context switching kills flow</h3>
-                                        <p className="text-zinc-400">Alt-tabbing to ChatGPT and back ruins your momentum.</p>
+                                        <p className="text-zinc-400 text-sm mt-1">Alt-tabbing to ChatGPT and back ruins your momentum.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -156,24 +225,17 @@ export default function Home() {
                             </h2>
                             <ul className="space-y-6">
                                 <li className="flex gap-4">
-                                    <Check className="w-6 h-6 text-green-500 shrink-0" />
+                                    <div className="mt-1"><Check className="w-5 h-5 text-green-500" /></div>
                                     <div>
                                         <h3 className="font-bold text-zinc-200">Diff-based patches</h3>
-                                        <p className="text-zinc-400">See exactly what lines are added or removed. Nothing is hidden.</p>
+                                        <p className="text-zinc-400 text-sm mt-1">See exactly what lines are added or removed. Nothing is hidden.</p>
                                     </div>
                                 </li>
                                 <li className="flex gap-4">
-                                    <Check className="w-6 h-6 text-green-500 shrink-0" />
-                                    <div>
-                                        <h3 className="font-bold text-zinc-200">Manual control</h3>
-                                        <p className="text-zinc-400">You apply the patch only when you are satisfied. You remain the engineer.</p>
-                                    </div>
-                                </li>
-                                <li className="flex gap-4">
-                                    <Check className="w-6 h-6 text-green-500 shrink-0" />
+                                    <div className="mt-1"><Check className="w-5 h-5 text-green-500" /></div>
                                     <div>
                                         <h3 className="font-bold text-zinc-200">Editor-native</h3>
-                                        <p className="text-zinc-400">Live inside Godot. Select nodes, hit generate, review, apply. Done.</p>
+                                        <p className="text-zinc-400 text-sm mt-1">Live inside Godot. Select nodes, hit generate, review, apply.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -183,9 +245,9 @@ export default function Home() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-32 px-6 text-center">
+            <section className="py-32 px-6 text-center border-t border-zinc-900 bg-zinc-950/50">
                 <div className="max-w-3xl mx-auto space-y-8">
-                    <h2 className="text-4xl font-bold text-white">Stop fighting the AI. Start directing it.</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">Stop fighting the AI. Start directing it.</h2>
                     <Link to="/install">
                         <Button variant="primary" className="h-14 px-8 text-xl w-full sm:w-auto">
                             Get the Plugin
