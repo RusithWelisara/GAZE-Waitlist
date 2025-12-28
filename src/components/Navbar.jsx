@@ -17,8 +17,10 @@ export default function Navbar() {
     }, []);
 
     const links = [
+        { name: "How It Works", path: "/how-it-works" },
         { name: "Features", path: "/features" },
-        { name: "Pricing", path: "/pricing" },
+        { name: "Install", path: "/install" },
+        { name: "Data & Safety", path: "/trust" },
     ];
 
     return (
@@ -48,8 +50,8 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/waitlist">
-                        <Button variant="primary" className="text-sm px-4 py-2">Join Waitlist</Button>
+                    <Link to="/install">
+                        <Button variant="primary" className="text-sm px-4 py-2">Download Plugin</Button>
                     </Link>
                 </div>
 
@@ -82,8 +84,8 @@ export default function Navbar() {
                                         {link.name}
                                     </Link>
                                 ))}
-                                <Link to="/waitlist" onClick={() => setIsOpen(false)}>
-                                    <Button variant="primary" className="w-full py-4 text-lg">Join Waitlist</Button>
+                                <Link to="/install" onClick={() => setIsOpen(false)}>
+                                    <Button variant="primary" className="w-full py-4 text-lg">Download Plugin</Button>
                                 </Link>
                             </div>
                         </motion.div>

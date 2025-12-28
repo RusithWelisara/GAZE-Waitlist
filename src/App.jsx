@@ -3,9 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Pricing from "./pages/Pricing";
 import Features from "./pages/Features";
-import Waitlist from "./pages/Waitlist";
+import HowItWorks from "./pages/HowItWorks";
+import Install from "./pages/Install";
+import Trust from "./pages/Trust";
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -25,9 +26,10 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-        <Route path="/pricing" element={<PageWrapper><Pricing /></PageWrapper>} />
+        <Route path="/how-it-works" element={<PageWrapper><HowItWorks /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
-        <Route path="/waitlist" element={<PageWrapper><Waitlist /></PageWrapper>} />
+        <Route path="/install" element={<PageWrapper><Install /></PageWrapper>} />
+        <Route path="/trust" element={<PageWrapper><Trust /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

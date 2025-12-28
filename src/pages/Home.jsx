@@ -1,184 +1,197 @@
+
+import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Button from "../components/ui/Button";
-import { Play, FileText, Check, X, Layers, Code2, ShieldCheck, Terminal, Cpu, Box, Lock, Zap } from "lucide-react";
-import { cn } from "../lib/utils";
-
-const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-};
-
-const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
+import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert } from "lucide-react";
 
 export default function Home() {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-            {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center py-32 px-6 overflow-hidden">
+            {/* 1. HERO SECTION */}
+            <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-background to-background pointer-events-none"></div>
-                <div className="max-w-5xl mx-auto text-center relative z-10">
+                <div className="max-w-4xl mx-auto text-center relative z-10">
                     <motion.h1
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeInUp}
-                        className="text-5xl md:text-7xl font-bold tracking-tight mb-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight"
                     >
-                        AI that builds games with you — <span className="text-zinc-500">not for you.</span>
+                        AI-powered code changes for Godot — <span className="text-zinc-500">reviewed, diffed, and under your control.</span>
                     </motion.h1>
+
                     <motion.p
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeInUp}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed"
                     >
-                        An engine-agnostic AI co-developer that understands your scene, your logic, and your intent.
-                        <br className="hidden md:block" />
-                        <span className="text-zinc-100">Works with Godot today. Unity next.</span>
+                        GazeAI is a Godot editor plugin that turns natural language into safe, reviewable patches — not blind code generation.
                     </motion.p>
+
                     <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeInUp}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
-                        <Link to="/waitlist" className="w-full sm:w-auto">
-                            <Button variant="primary" className="text-lg px-8 py-3 w-full sm:w-auto shadow-xl shadow-violet-500/20 flex items-center justify-center gap-2">
-                                <Play size={20} fill="currentColor" /> Try the Live Demo
+                        <Link to="/install">
+                            <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20">
+                                Download Plugin
                             </Button>
                         </Link>
-                        <a href="#how-it-works" className="w-full sm:w-auto">
-                            <Button variant="outline" className="text-lg px-8 py-3 w-full sm:w-auto flex items-center justify-center gap-2">
-                                <FileText size={20} /> See How It Works
+                        <Link to="/how-it-works">
+                            <Button variant="outline" className="text-lg px-8 py-4 w-full sm:w-auto">
+                                See How It Works
                             </Button>
-                        </a>
+                        </Link>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Why This Exists */}
-            <section id="why-this-exists" className="py-24 px-6 border-t border-zinc-900 bg-zinc-950/50">
+            {/* 2. VISUAL PROOF (Focused Flow Mockup) */}
+            <section className="px-6 pb-32">
                 <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Why another AI tool for game dev?</h2>
-                    </div>
+                    <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl relative">
+                        {/* Fake Window Header */}
+                        <div className="bg-zinc-900 px-4 py-2 border-b border-zinc-800 flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                            <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/50"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                            <span className="text-xs text-zinc-500 ml-2 font-mono">Godot Engine - Project</span>
+                        </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 mb-12">
-                        <div className="p-8 rounded-2xl bg-zinc-900/40 border border-zinc-800">
-                            <div className="mb-4 text-red-400"><X size={32} /></div>
-                            <h3 className="text-xl font-bold mb-2">Unity Muse</h3>
-                            <p className="text-zinc-400">Writes code. You still wire everything.</p>
-                        </div>
-                        <div className="p-8 rounded-2xl bg-zinc-900/40 border border-zinc-800">
-                            <div className="mb-4 text-red-400"><X size={32} /></div>
-                            <h3 className="text-xl font-bold mb-2">Gambo</h3>
-                            <p className="text-zinc-400">Generates games. You lose control.</p>
-                        </div>
-                        <div className="p-8 rounded-2xl bg-zinc-900/40 border border-zinc-800">
-                            <div className="mb-4 text-yellow-400"><Terminal size={32} /></div>
-                            <h3 className="text-xl font-bold mb-2">Scratch</h3>
-                            <p className="text-zinc-400">Visual. Professionals outgrow it.</p>
-                        </div>
-                    </div>
+                        {/* Mock Interface Content */}
+                        <div className="flex h-[500px] font-mono text-sm">
+                            {/* Left Pane: Prompt */}
+                            <div className="w-1/3 border-r border-zinc-800 p-4 bg-zinc-900/30 flex flex-col">
+                                <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold mb-4">Prompt</div>
+                                <div className="bg-zinc-950 p-3 rounded text-zinc-300 mb-4 border border-zinc-800">
+                                    "Make the enemy flash red when taking damage"
+                                </div>
+                                <div className="mt-auto">
+                                    <div className="p-2 bg-violet-600 text-white text-center rounded text-xs font-bold">Generate Patch</div>
+                                </div>
+                            </div>
 
-                    <div className="text-center">
-                        <p className="text-2xl font-medium text-white">This tool sits between all of them.</p>
+                            {/* Right Pane: Diff */}
+                            <div className="flex-1 p-4 bg-zinc-950 overflow-y-auto">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Preview Diff: enemy.gd</div>
+                                    <div className="flex gap-2">
+                                        <span className="px-2 py-1 bg-red-500/10 text-red-500 rounded text-xs">Reject</span>
+                                        <span className="px-2 py-1 bg-green-500/10 text-green-500 rounded text-xs">Apply</span>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                    <div className="text-zinc-500 px-2 py-0.5"> func take_damage(amount):</div>
+                                    <div className="text-zinc-500 px-2 py-0.5"> &nbsp;&nbsp;&nbsp;&nbsp;health -= amount</div>
+                                    <div className="bg-green-500/10 text-green-400 px-2 py-0.5 border-l-2 border-green-500 select-none">
+                                        +&nbsp;&nbsp;&nbsp;&nbsp;modulate = Color.RED
+                                    </div>
+                                    <div className="bg-green-500/10 text-green-400 px-2 py-0.5 border-l-2 border-green-500 select-none">
+                                        +&nbsp;&nbsp;&nbsp;&nbsp;await get_tree().create_timer(0.1).timeout
+                                    </div>
+                                    <div className="bg-green-500/10 text-green-400 px-2 py-0.5 border-l-2 border-green-500 select-none">
+                                        +&nbsp;&nbsp;&nbsp;&nbsp;modulate = Color.WHITE
+                                    </div>
+                                    <div className="text-zinc-500 px-2 py-0.5"> &nbsp;&nbsp;&nbsp;&nbsp;if health &lt;= 0:</div>
+                                    <div className="text-zinc-500 px-2 py-0.5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die()</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Annotation Badge */}
+                        <div className="absolute bottom-8 right-8 bg-violet-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-bold animate-pulse">
+                            Live Update Preview
+                        </div>
                     </div>
+                    <p className="text-center text-zinc-500 mt-4 text-sm">
+                        * Real screenshot of GazeAI diff inspector
+                    </p>
                 </div>
             </section>
 
-            {/* What Makes This Different */}
-            <section id="how-it-works" className="py-24 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">What Makes This Different</h2>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {/* Card 1 */}
-                        <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-950/50 hover:border-violet-500/50 transition-colors group">
-                            <div className="w-12 h-12 rounded-xl bg-violet-500/10 text-violet-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <Layers size={24} />
-                            </div>
-                            <h3 className="text-xl font-bold mb-4">Scene-Aware AI</h3>
-                            <p className="text-zinc-400 leading-relaxed">
-                                The AI understands your scene graph, object hierarchy, and relationships — not just files.
-                            </p>
+            {/* 3. PROBLEM vs SOLUTION */}
+            <section className="py-24 px-6 bg-zinc-900/20 border-y border-zinc-800">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid md:grid-cols-2 gap-12">
+                        {/* The Problem */}
+                        <div className="space-y-8">
+                            <h2 className="text-2xl font-bold text-red-400 flex items-center gap-3">
+                                <BadgeAlert className="w-6 h-6" />
+                                The Problem
+                            </h2>
+                            <ul className="space-y-6">
+                                <li className="flex gap-4">
+                                    <X className="w-6 h-6 text-red-500 shrink-0" />
+                                    <div>
+                                        <h3 className="font-bold text-zinc-200">AI writes wrong code</h3>
+                                        <p className="text-zinc-400">LLMs hallucinate. If you blindly paste their output, you break your project.</p>
+                                    </div>
+                                </li>
+                                <li className="flex gap-4">
+                                    <X className="w-6 h-6 text-red-500 shrink-0" />
+                                    <div>
+                                        <h3 className="font-bold text-zinc-200">Silent breaking changes</h3>
+                                        <p className="text-zinc-400">You don't know what changed until runtime errors crash your game.</p>
+                                    </div>
+                                </li>
+                                <li className="flex gap-4">
+                                    <X className="w-6 h-6 text-red-500 shrink-0" />
+                                    <div>
+                                        <h3 className="font-bold text-zinc-200">Context switching kills flow</h3>
+                                        <p className="text-zinc-400">Alt-tabbing to ChatGPT and back ruins your momentum.</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
 
-                        {/* Card 2 */}
-                        <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-950/50 hover:border-violet-500/50 transition-colors group">
-                            <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <Box size={24} />
-                            </div>
-                            <h3 className="text-xl font-bold mb-4">Blocks + Code Hybrid</h3>
-                            <p className="text-zinc-400 leading-relaxed">
-                                Visual logic that compiles into real engine code. Edit visually or manually.
-                            </p>
+                        {/* The Solution */}
+                        <div className="space-y-8">
+                            <h2 className="text-2xl font-bold text-green-400 flex items-center gap-3">
+                                <FileDiff className="w-6 h-6" />
+                                The Solution
+                            </h2>
+                            <ul className="space-y-6">
+                                <li className="flex gap-4">
+                                    <Check className="w-6 h-6 text-green-500 shrink-0" />
+                                    <div>
+                                        <h3 className="font-bold text-zinc-200">Diff-based patches</h3>
+                                        <p className="text-zinc-400">See exactly what lines are added or removed. Nothing is hidden.</p>
+                                    </div>
+                                </li>
+                                <li className="flex gap-4">
+                                    <Check className="w-6 h-6 text-green-500 shrink-0" />
+                                    <div>
+                                        <h3 className="font-bold text-zinc-200">Manual control</h3>
+                                        <p className="text-zinc-400">You apply the patch only when you are satisfied. You remain the engineer.</p>
+                                    </div>
+                                </li>
+                                <li className="flex gap-4">
+                                    <Check className="w-6 h-6 text-green-500 shrink-0" />
+                                    <div>
+                                        <h3 className="font-bold text-zinc-200">Editor-native</h3>
+                                        <p className="text-zinc-400">Live inside Godot. Select nodes, hit generate, review, apply. Done.</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-
-                        {/* Card 3 */}
-                        <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-950/50 hover:border-violet-500/50 transition-colors group">
-                            <div className="w-12 h-12 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <ShieldCheck size={24} />
-                            </div>
-                            <h3 className="text-xl font-bold mb-4">Full Control & Transparency</h3>
-                            <p className="text-zinc-400 leading-relaxed">
-                                Every AI action is previewed, diffed, and approved by you.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Credibility Signals */}
-            <section className="py-16 px-6 border-t border-zinc-900 bg-zinc-950/30">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-zinc-500">
-                    <div className="flex items-center gap-3">
-                        <Cpu size={24} className="text-zinc-400" />
-                        <span className="text-lg font-medium">Built with Godot developers in mind</span>
-                    </div>
-                    <div className="h-8 w-px bg-zinc-800 hidden md:block"></div>
-                    <div className="flex items-center gap-3">
-                        <Lock size={24} className="text-zinc-400" />
-                        <span className="text-lg font-medium">Open-core philosophy</span>
-                    </div>
-                    <div className="h-8 w-px bg-zinc-800 hidden md:block"></div>
-                    <div className="flex items-center gap-3">
-                        <Zap size={24} className="text-zinc-400" />
-                        <span className="text-lg font-medium">No vendor lock-in</span>
                     </div>
                 </div>
             </section>
 
             {/* Final CTA */}
-            <section className="py-32 px-6 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-violet-900/10 to-transparent pointer-events-none"></div>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="relative z-10 max-w-3xl mx-auto"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">
-                        Ready to join the revolution?
-                    </h2>
-                    <Link to="/waitlist">
-                        <Button variant="primary" className="text-xl px-12 py-4 shadow-2xl shadow-violet-500/20">
-                            Join the Waitlist
+            <section className="py-32 px-6 text-center">
+                <div className="max-w-3xl mx-auto space-y-8">
+                    <h2 className="text-4xl font-bold text-white">Stop fighting the AI. Start directing it.</h2>
+                    <Link to="/install">
+                        <Button variant="primary" className="h-14 px-8 text-xl w-full sm:w-auto">
+                            Get the Plugin
                         </Button>
                     </Link>
-                </motion.div>
+                </div>
             </section>
         </div>
     );

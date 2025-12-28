@@ -1,74 +1,65 @@
+
 import { motion } from "framer-motion";
-import { Box, Code2, Layers, Cpu, Zap, Terminal } from "lucide-react";
+import { GitPullRequest, FileDiff, CheckSquare, AppWindow, FileCode2 } from "lucide-react";
 
 export default function Features() {
-    const sections = [
+    const features = [
         {
-            title: "Project-Aware AI",
-            icon: <Box size={24} />,
-            items: ["Entire source code", "Nodes", "Signals", "Components", "Physics", "Animation states"]
+            title: "Patch-Based Editing",
+            description: "AI never overwrites your files. It generates a patch describing changes, which guarantees no accidental deletions of unrelated code.",
+            icon: GitPullRequest
         },
         {
-            title: "Code Patch Engine",
-            icon: <Code2 size={24} />,
-            items: ["Unified diffs", "Minimal changes", "Safe patches"]
+            title: "Unified Diff Viewer",
+            description: "Review changes in a standard diff format. Green for additions, red for deletions. See exactly what is happening before it happens.",
+            icon: FileDiff
         },
         {
-            title: "Scene Graph Intelligence",
-            icon: <Layers size={24} />,
-            items: ["Parents/children", "Colliders", "Scripts", "Signals", "Timelines"]
+            title: "Manual Apply / Reject",
+            description: "You have final authority. Click 'Apply' to merge the specific chunks you want, or 'Reject' to discard the hallucination.",
+            icon: CheckSquare
         },
         {
-            title: "Smart Nodes",
-            icon: <Cpu size={24} />,
-            items: ["Properties", "Signals", "Ready() logic", "Cleanup"]
+            title: "Editor-Native Integration",
+            description: "Lives inside Godot (dockable). No Alt-Tab switching to a web browser. It reads the file you have open.",
+            icon: AppWindow
         },
         {
-            title: "Bug Fixer",
-            icon: <Zap size={24} />,
-            items: ["Error logs → root cause → patch"]
-        },
-        {
-            title: "Local LLM Support",
-            icon: <Terminal size={24} />,
-            items: ["Llama", "Mistral", "Phi"]
+            title: "Local Context Awareness",
+            description: "Select which scripts and nodes are relevant. GazeAI constructs a focused prompt based on your logical selection, not a blind project scan.",
+            icon: FileCode2
         }
     ];
 
     return (
         <div className="min-h-screen pt-32 pb-24 px-6 md:pt-48 md:pb-32">
-            <div className="max-w-6xl mx-auto">
-                <div className="mb-20">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight tracking-tight">
-                        Features that understand <br className="hidden md:block" />
-                        <span className="text-zinc-500">your entire project.</span>
+            <div className="max-w-5xl mx-auto">
+                <div className="mb-20 text-center">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
+                        Features for <span className="text-zinc-500">Control Freak</span> Developers
                     </h1>
+                    <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+                        We stripped away the chat bots, the avatars, and the "magic" to give you raw, functional tools.
+                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-                    {sections.map((section, i) => (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {features.map((feature, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="flex flex-col sm:flex-row gap-6 p-8 rounded-2xl border border-zinc-800 bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors"
+                            className="p-6 rounded-xl border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/50 transition-colors"
                         >
-                            <div className="shrink-0 w-12 h-12 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center border border-violet-500/20">
-                                {section.icon}
+                            <div className="w-12 h-12 rounded-lg bg-zinc-800/50 flex items-center justify-center mb-4 text-violet-400">
+                                <feature.icon className="w-6 h-6" />
                             </div>
-                            <div>
-                                <h3 className="text-xl font-bold mb-4 text-zinc-100">{section.title}</h3>
-                                <ul className="space-y-3">
-                                    {section.items.map((item, j) => (
-                                        <li key={j} className="text-zinc-400 flex items-center gap-3 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-violet-500/50 shrink-0"></div>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
+                            <p className="text-zinc-400 text-sm leading-relaxed">
+                                {feature.description}
+                            </p>
                         </motion.div>
                     ))}
                 </div>

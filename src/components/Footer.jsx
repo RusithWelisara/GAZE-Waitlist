@@ -6,18 +6,17 @@ export default function Footer() {
         {
             title: "Product",
             links: [
+                { name: "How It Works", path: "/how-it-works" },
                 { name: "Features", path: "/features" },
-                { name: "Pricing", path: "/pricing" },
-                { name: "Roadmap", path: "#" },
-                { name: "Docs", path: "#" },
+                { name: "Install", path: "/install" },
+                { name: "Data & Safety", path: "/trust" },
             ]
         },
         {
-            title: "Company",
+            title: "Community",
             links: [
-                { name: "About", path: "#" },
-                { name: "Careers", path: "#" },
-                { name: "Contact", path: "#" },
+                { name: "GitHub", path: "https://github.com/Start-Gaze/GazeAI" },
+                { name: "Discord", path: "#" },
             ]
         }
     ];
@@ -32,7 +31,7 @@ export default function Footer() {
                             <span className="text-lg font-bold text-white">GAZE</span>
                         </div>
                         <p className="text-zinc-400 text-sm max-w-xs">
-                            The AI layer your game engine was missing. Build scenes, fix bugs, and generate systems with production-ready AI.
+                            AI-powered code changes for Godot — reviewed, diffed, and under your control.
                         </p>
                     </div>
 
@@ -42,9 +41,15 @@ export default function Footer() {
                             <ul className="space-y-3">
                                 {col.links.map((link) => (
                                     <li key={link.name}>
-                                        <Link to={link.path} className="text-sm text-zinc-400 hover:text-white transition-colors">
-                                            {link.name}
-                                        </Link>
+                                        {link.path.startsWith("http") ? (
+                                            <a href={link.path} target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">
+                                                {link.name}
+                                            </a>
+                                        ) : (
+                                            <Link to={link.path} className="text-sm text-zinc-400 hover:text-white transition-colors">
+                                                {link.name}
+                                            </Link>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
@@ -55,9 +60,8 @@ export default function Footer() {
                 <div className="pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-zinc-500 text-sm">© 2025 GAZE. All rights reserved.</p>
                     <div className="flex items-center gap-4">
-                        <a href="#" className="text-zinc-500 hover:text-white transition-colors"><Twitter size={20} /></a>
-                        <a href="#" className="text-zinc-500 hover:text-white transition-colors"><Youtube size={20} /></a>
-                        <a href="#" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
+                        <a href="https://github.com/Start-Gaze/GazeAI" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
+                        <a href="#" className="text-zinc-500 hover:text-white transition-colors"><Disc size={20} /></a>
                     </div>
                 </div>
             </div>
