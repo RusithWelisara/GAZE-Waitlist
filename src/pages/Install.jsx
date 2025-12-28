@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Terminal, Key, FolderDown, AlertCircle } from 'lucide-react';
+import { Download, Terminal, Key, FolderDown, AlertCircle, Trash2, Shield, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CodeBlock = ({ children }) => (
@@ -20,40 +20,57 @@ export default function Install() {
                         Installation
                     </h1>
                     <p className="text-xl text-zinc-400">
-                        Get up and running with GazeAI in under 2 minutes.
+                        Zero config. Zero system dependencies. Just a plugin.
                     </p>
                 </div>
 
-                {/* Method 1 */}
-                <section className="space-y-6 opacity-75">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="bg-zinc-800 p-2 rounded-lg">
-                            <Download className="w-6 h-6 text-zinc-400" />
+                {/* VISIBLE SPECS (Crucial for decision making) */}
+                <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-zinc-900/30 border border-zinc-800 p-4 rounded-xl">
+                        <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Supported Versions</div>
+                        <div className="text-white font-medium flex items-center gap-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" className="w-5 h-5 opacity-80" alt="Godot" />
+                            Godot 4.2 and higher
                         </div>
-                        <h2 className="text-2xl font-semibold text-white">Method 1: Godot Asset Library</h2>
-                        <span className="px-3 py-1 bg-zinc-800 text-zinc-400 text-xs rounded-full uppercase tracking-wider font-medium">Coming Soon</span>
                     </div>
-                    <p className="text-zinc-400 pl-14">
-                        We are currently under review for the official asset library. For now, please use the manual install method below.
-                    </p>
-                </section>
+                    <div className="bg-zinc-900/30 border border-zinc-800 p-4 rounded-xl">
+                        <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Permissions Needed</div>
+                        <div className="text-white font-medium flex items-center gap-2">
+                            <Shield className="w-5 h-5 text-zinc-400" />
+                            HTTPS Outbound (for API)
+                        </div>
+                    </div>
+                    <div className="bg-zinc-900/30 border border-zinc-800 p-4 rounded-xl">
+                        <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Installation Path</div>
+                        <div className="text-white font-medium flex items-center gap-2">
+                            <FolderDown className="w-5 h-5 text-zinc-400" />
+                            res://addons/gaze_ai/
+                        </div>
+                    </div>
+                </div>
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* Method 2 */}
+                {/* Method 2 - Manual Install */}
                 <section className="space-y-8">
                     <div className="flex items-center gap-3">
                         <div className="bg-violet-500/10 p-2 rounded-lg">
-                            <FolderDown className="w-6 h-6 text-violet-400" />
+                            <Download className="w-6 h-6 text-violet-400" />
                         </div>
-                        <h2 className="text-2xl font-semibold text-white">Method 2: Manual Install</h2>
+                        <h2 className="text-2xl font-semibold text-white">Manual Installation</h2>
                     </div>
 
-                    <div className="pl-14 space-y-8">
-                        <div className="space-y-4">
-                            <h3 className="text-lg font-medium text-white">1. Download the release</h3>
+                    <div className="pl-0 md:pl-14 space-y-10"> {/* Reduced padding on mobile */}
+
+                        {/* Step 1 */}
+                        <div className="space-y-4 relative">
+                            <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-sm font-bold hidden md:flex">1</div>
+                            <h3 className="text-lg font-medium text-white flex items-center gap-2 md:block">
+                                <span className="md:hidden font-bold text-zinc-500 mr-2">1.</span>
+                                Download the release
+                            </h3>
                             <p className="text-zinc-400">
-                                Download the latest <span className="text-zinc-200">gaze_ai.zip</span> from our GitHub releases.
+                                Grab the latest <span className="text-zinc-200">gaze_ai.zip</span> from our GitHub releases.
                             </p>
                             <a
                                 href="https://github.com/Start-Gaze/GazeAI/releases"
@@ -66,70 +83,63 @@ export default function Install() {
                             </a>
                         </div>
 
-                        <div className="space-y-4">
-                            <h3 className="text-lg font-medium text-white">2. Extract to addons folder</h3>
+                        {/* Step 2 */}
+                        <div className="space-y-4 relative">
+                            <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-sm font-bold hidden md:flex">2</div>
+                            <h3 className="text-lg font-medium text-white flex items-center gap-2 md:block">
+                                <span className="md:hidden font-bold text-zinc-500 mr-2">2.</span>
+                                Extract to addons folder
+                            </h3>
                             <p className="text-zinc-400">
-                                Extract the zip file into your Godot project's <span className="text-zinc-200 font-mono text-sm">addons/</span> directory.
+                                Unzip the folder into your project's <span className="text-zinc-200 font-mono text-sm">addons/</span> directory.
                             </p>
                             <CodeBlock>
-                                <span className="text-zinc-500"># Your project structure should look like this:</span><br />
-                                my_godot_project/<br />
-                                ├── project.godot<br />
-                                └── addons/<br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;└── <span className="text-violet-400">gaze_ai/</span><br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── plugin.cfg<br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── ...
+                                <span className="text-zinc-500"># Your file structure MUST look like this:</span><br />
+                                my_godot_project/project.godot<br />
+                                my_godot_project/addons/<span className="text-violet-400">gaze_ai/</span>plugin.cfg
                             </CodeBlock>
                         </div>
 
-                        <div className="space-y-4">
-                            <h3 className="text-lg font-medium text-white">3. Enable the plugin</h3>
+                        {/* Step 3 */}
+                        <div className="space-y-4 relative">
+                            <div className="absolute -left-10 top-0 w-6 h-6 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-sm font-bold hidden md:flex">3</div>
+                            <h3 className="text-lg font-medium text-white flex items-center gap-2 md:block">
+                                <span className="md:hidden font-bold text-zinc-500 mr-2">3.</span>
+                                Enable & Configure Keys
+                            </h3>
                             <p className="text-zinc-400">
-                                Open Godot, go to <span className="text-zinc-200">Project settings → Plugins</span>, and check the box next to <b className="text-white">GazeAI</b>.
+                                1. In Godot, go to <b className="text-white">Project → Project Settings → Plugins</b>.<br />
+                                2. Check the "Enable" box next to <b className="text-white">GazeAI</b>.<br />
+                                3. A new dock will appear. Click the <Settings className="w-4 h-4 inline mx-1" /> icon to add your API key.
                             </p>
-                            <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg flex gap-3 text-amber-200/80 text-sm">
-                                <AlertCircle className="w-5 h-5 shrink-0" />
-                                <p>Supported Versions: Godot 4.5+</p>
+                            <div className="p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg text-sm text-zinc-400">
+                                <p>We support <b>OpenAI (GPT-4o)</b> and <b>Anthropic (Claude 3.5 Sonnet)</b> keys.</p>
                             </div>
                         </div>
+
                     </div>
                 </section>
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* API Key */}
-                <section className="space-y-8">
+                {/* Uninstall Section */}
+                <section className="space-y-6">
                     <div className="flex items-center gap-3">
-                        <div className="bg-violet-500/10 p-2 rounded-lg">
-                            <Key className="w-6 h-6 text-violet-400" />
+                        <div className="bg-zinc-800/50 p-2 rounded-lg">
+                            <Trash2 className="w-6 h-6 text-zinc-500" />
                         </div>
-                        <h2 className="text-2xl font-semibold text-white">API Key Setup</h2>
+                        <h2 className="text-2xl font-semibold text-white">How to Uninstall</h2>
                     </div>
 
-                    <div className="pl-14 space-y-6">
-                        <p className="text-zinc-400">
-                            GazeAI currently requires an OpenAI API key (GPT-4o) or Anthropic API Key (Claude 3.5 Sonnet) to function.
+                    <div className="pl-0 md:pl-14">
+                        <p className="text-zinc-400 mb-4">
+                            We don't leave garbage behind. To remove GazeAI completely:
                         </p>
-
-                        <div className="space-y-4">
-                            <h3 className="text-lg font-medium text-white">Where to put it</h3>
-                            <p className="text-zinc-400">
-                                Once enabled, a new dock will appear in Godot called <b className="text-white">GazeAI</b>.
-                                Click the <b className="text-white">Settings</b> icon in the dock and paste your key.
-                            </p>
-                        </div>
-
-                        <div className="space-y-4">
-                            <h3 className="text-lg font-medium text-white">What data is sent?</h3>
-                            <p className="text-zinc-400">
-                                We send <b>only</b> the content of the files you explicitly select for context, along with your prompt.
-                                <br />
-                                Your key is stored locally in your Godot editor settings.
-                            </p>
-                            <Link to="/trust" className="text-violet-400 hover:text-violet-300 text-sm hover:underline">
-                                Read our full Data & Safety policy →
-                            </Link>
-                        </div>
+                        <ol className="list-decimal list-inside space-y-2 text-zinc-300">
+                            <li>Disable the plugin in <b className="text-white">Project Settings → Plugins</b>.</li>
+                            <li>Delete the <span className="font-mono text-xs bg-zinc-900 px-1 py-0.5 rounded">addons/gaze_ai</span> folder.</li>
+                            <li className="text-zinc-500">That's it. No hidden files. No registry keys.</li>
+                        </ol>
                     </div>
                 </section>
 
