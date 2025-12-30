@@ -50,8 +50,8 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/install">
-                        <Button variant="primary" className="text-sm px-4 py-2">Download Plugin</Button>
+                    <Link to="/waitlist">
+                        <Button variant="primary" className="text-sm px-5 py-2">Join Waitlist</Button>
                     </Link>
                 </div>
 
@@ -84,8 +84,8 @@ export default function Navbar() {
                                         {link.name}
                                     </Link>
                                 ))}
-                                <Link to="/install" onClick={() => setIsOpen(false)}>
-                                    <Button variant="primary" className="w-full py-4 text-lg">Download Plugin</Button>
+                                <Link to="/waitlist" onClick={() => setIsOpen(false)}>
+                                    <Button variant="primary" className="w-full py-4 text-lg">Join Waitlist</Button>
                                 </Link>
                             </div>
                         </motion.div>

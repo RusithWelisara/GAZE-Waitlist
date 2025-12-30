@@ -6,6 +6,7 @@ export default function Footer() {
         {
             title: "Product",
             links: [
+                { name: "Waitlist", path: "/waitlist" },
                 { name: "How It Works", path: "/how-it-works" },
                 { name: "Features", path: "/features" },
                 { name: "Install", path: "/install" },

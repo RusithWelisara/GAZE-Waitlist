@@ -15,87 +15,175 @@ export default function Home() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-tight"
+                        className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
                     >
-                        AI-powered code changes for Godot — <span className="text-zinc-500">reviewed before they touch your project.</span>
+                        AI-assisted code changes for Godot — <span className="text-zinc-500 text-3xl md:text-5xl block mt-2">reviewed before they touch your project.</span>
                     </motion.h1>
 
-                    <motion.div
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="flex flex-wrap items-center justify-center gap-4 text-zinc-400 mb-12 font-mono text-sm md:text-base"
+                        className="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl mx-auto"
                     >
-                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
-                            <FileDiff className="w-4 h-4 text-violet-500" /> Patch-based
-                        </span>
-                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
-                            <ArrowRight className="w-4 h-4 text-violet-500" /> Diff-visible
-                        </span>
-                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
-                            <Check className="w-4 h-4 text-violet-500" /> Manual apply
-                        </span>
-                        <span className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
-                            <ShieldAlert className="w-4 h-4 text-violet-500" /> Editor-native
-                        </span>
-                    </motion.div>
+                        GazeAI is a Godot editor plugin that turns natural-language requests into visible, reviewable patches, not blind code generation.
+                    </motion.p>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-sm text-zinc-500 mb-10 font-mono"
+                    >
+                        Built for developers who don’t trust AI with their code — and shouldn’t.
+                    </motion.p>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-col items-center justify-center gap-4"
                     >
-                        <Link to="/install">
+                        <Link to="/waitlist" className="w-full sm:w-auto">
                             <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20">
-                                Download Plugin
+                                Join the Private Access Waitlist
                             </Button>
                         </Link>
-                        <Link to="/how-it-works">
-                            <Button variant="outline" className="text-lg px-8 py-4 w-full sm:w-auto">
-                                See How It Works
-                            </Button>
-                        </Link>
+                        <span className="text-xs text-zinc-500 uppercase tracking-widest">
+                            Early access will be limited and manual.
+                        </span>
                     </motion.div>
                 </div>
             </section>
 
-            {/* 2. WHAT THIS IS NOT */}
-            <section className="py-12 px-6 border-b border-zinc-900">
-                <div className="max-w-4xl mx-auto">
-                    <div className="bg-zinc-900/30 border border-zinc-800 rounded-xl p-8 text-center sm:text-left sm:flex items-center justify-between gap-8">
-                        <div>
-                            <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">GazeAI is NOT:</h3>
-                            <ul className="space-y-2 text-zinc-400">
-                                <li className="flex items-center gap-2 justify-center sm:justify-start">
-                                    <X className="w-4 h-4 text-red-500" /> Auto-applied AI code
-                                </li>
-                                <li className="flex items-center gap-2 justify-center sm:justify-start">
-                                    <X className="w-4 h-4 text-red-500" /> A black box generator
-                                </li>
-                                <li className="flex items-center gap-2 justify-center sm:justify-start">
-                                    <X className="w-4 h-4 text-red-500" /> A replacement for thinking
-                                </li>
+            {/* 2. WHO THIS IS FOR (CRITICAL FILTER) */}
+            <section className="py-24 px-6 border-y border-zinc-900 bg-zinc-950/30 relative">
+                <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
+                <div className="max-w-5xl mx-auto relative z-10">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Are you building for real?</h2>
+                        <p className="text-zinc-500 max-w-xl mx-auto">We're selective about who enters the private access group. GazeAI is a tool for professionals, not a toy.</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-2xl">
+                            <h3 className="text-lg font-bold text-white mb-8 flex items-center gap-2">
+                                <span className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center">
+                                    <Check className="w-4 h-4 text-green-500" />
+                                </span>
+                                This tool is for you if:
+                            </h3>
+                            <ul className="space-y-4">
+                                {[
+                                    "You use Godot for real projects",
+                                    "You want AI help without losing control",
+                                    "You insist on seeing diffs before applying changes",
+                                    "You care about reversibility and safety"
+                                ].map((item, i) => (
+                                    <li key={i} className="flex gap-3 text-zinc-300 items-start">
+                                        <div className="w-1 h-1 rounded-full bg-green-500 mt-2.5 shrink-0"></div>
+                                        <span className="text-sm md:text-base">{item}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
-                        <div className="hidden sm:block w-px h-24 bg-zinc-800"></div>
-                        <div className="mt-6 sm:mt-0 max-w-sm text-zinc-500 text-sm">
-                            <p>
-                                We built this for developers who want to speed up their workflow without losing control of their codebase.
-                                It requires you to know what you are doing.
+
+                        <div className="bg-zinc-900/20 border border-zinc-900 p-8 rounded-2xl opacity-80">
+                            <h3 className="text-lg font-bold text-zinc-400 mb-8 flex items-center gap-2">
+                                <span className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center">
+                                    <X className="w-4 h-4 text-red-500" />
+                                </span>
+                                This tool is NOT for you if:
+                            </h3>
+                            <ul className="space-y-4">
+                                {[
+                                    "You want one-click “magic” code generation",
+                                    "You don’t review changes",
+                                    "You expect AI to think for you"
+                                ].map((item, i) => (
+                                    <li key={i} className="flex gap-3 text-zinc-500 items-start">
+                                        <div className="w-1 h-1 rounded-full bg-zinc-700 mt-2.5 shrink-0"></div>
+                                        <span className="text-sm md:text-base">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <p className="text-[10px] text-zinc-600 uppercase tracking-widest mt-12 font-bold">
+                                This saves you months of bad feedback later.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
+            {/* 3. WHAT IT ACTUALLY DOES (NO FUTURE PROMISES) */}
+            <section className="py-24 px-6 relative overflow-hidden">
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                        <div className="space-y-12">
+                            <div>
+                                <h2 className="text-2xl font-bold text-white mb-6">What GazeAI does today:</h2>
+                                <ul className="space-y-5">
+                                    {[
+                                        "Generates patches, not files",
+                                        "Shows unified diffs inside the editor",
+                                        "Lets you manually apply or reject changes",
+                                        "Works directly inside Godot"
+                                    ].map((item, i) => (
+                                        <li key={i} className="flex gap-4 text-zinc-300 items-center">
+                                            <div className="w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-violet-500"></div>
+                                            </div>
+                                            <span className="font-medium">{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
-            {/* 3. VISUAL PROOF (Focused Flow Mockup) */}
-            <section className="px-6 py-24">
+                            <div className="pt-8 border-t border-zinc-900">
+                                <h2 className="text-xl font-bold text-zinc-500 mb-6">What it does not do (yet):</h2>
+                                <ul className="space-y-4">
+                                    {[
+                                        "Auto-apply changes",
+                                        "Modify scenes silently",
+                                        "Replace your workflow",
+                                        "Act without permission"
+                                    ].map((item, i) => (
+                                        <li key={i} className="flex gap-3 text-zinc-500 items-center text-sm">
+                                            <X className="w-3.5 h-3.5 opacity-30" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <p className="text-[10px] text-zinc-700 mt-8 font-mono italic">
+                                    Honesty here builds trust.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-violet-500/10 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+                            <div className="relative bg-zinc-950 border border-zinc-800 rounded-2xl p-2 shadow-2xl overflow-hidden">
+                                <div className="bg-zinc-900/50 rounded-xl overflow-hidden border border-zinc-800/50 h-[300px] flex items-center justify-center">
+                                    <div className="text-center p-8">
+                                        <FileDiff className="w-12 h-12 text-violet-500/40 mx-auto mb-4" />
+                                        <p className="text-zinc-500 text-sm font-mono">
+                                            [Editor Native Integration]<br />
+                                            GazeAI Panel - Patch View
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. VISUAL PROOF (Focused Flow Mockup) */}
+            <section className="px-6 py-24 bg-zinc-900/10">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-white mb-4">You see exactly what changes.</h2>
-                        <p className="text-zinc-400">No surprises. No hidden deletions.</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">Verification first.</h2>
+                        <p className="text-zinc-400">See exactly what changes. No hidden deletions.</p>
                     </div>
 
                     <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl relative">
@@ -104,142 +192,78 @@ export default function Home() {
                             <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
                             <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/50"></div>
                             <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
-                            <span className="text-xs text-zinc-500 ml-2 font-mono">Godot Engine - Project</span>
+                            <span className="text-xs text-zinc-500 ml-2 font-mono">Godot Engine - GazeAI Patch View</span>
                         </div>
 
                         {/* Mock Interface Content */}
                         <div className="flex flex-col md:flex-row h-[500px] font-mono text-sm">
                             {/* Left Pane: Prompt */}
                             <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 p-4 bg-zinc-900/30 flex flex-col">
-                                <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold mb-4">Prompt</div>
+                                <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold mb-4">Request</div>
                                 <div className="bg-zinc-950 p-3 rounded text-zinc-300 mb-4 border border-zinc-800">
-                                    "Make the enemy flash red when taking damage"
+                                    "Make the player character move faster when holding shift"
                                 </div>
+                                <p className="text-[10px] text-zinc-500 leading-relaxed">
+                                    Analyzing player.gd...<br />
+                                    Found movement logic.<br />
+                                    Generating patch...
+                                </p>
                                 <div className="mt-auto">
-                                    <div className="p-2 bg-violet-600 text-white text-center rounded text-xs font-bold">Generate Patch</div>
+                                    <div className="p-2 bg-violet-600/20 text-violet-400 border border-violet-500/30 text-center rounded text-xs font-bold">Patch Ready</div>
                                 </div>
                             </div>
 
                             {/* Right Pane: Diff */}
                             <div className="flex-1 p-4 bg-zinc-950 overflow-y-auto">
                                 <div className="flex items-center justify-between mb-4">
-                                    <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Preview Diff: enemy.gd</div>
+                                    <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Unified Diff: player.gd</div>
                                     <div className="flex gap-2">
-                                        <span className="px-2 py-1 bg-red-500/10 text-red-500 rounded text-xs">Reject</span>
-                                        <span className="px-2 py-1 bg-green-500/10 text-green-500 rounded text-xs">Apply</span>
+                                        <span className="px-2 py-1 bg-red-500/10 text-red-500 rounded text-[10px] border border-red-500/20 uppercase font-bold">Reject</span>
+                                        <span className="px-2 py-1 bg-green-500/10 text-green-500 rounded text-[10px] border border-green-500/20 uppercase font-bold">Apply</span>
                                     </div>
                                 </div>
 
-                                <div className="space-y-1">
-                                    <div className="text-zinc-500 px-2 py-0.5"> func take_damage(amount):</div>
-                                    <div className="text-zinc-500 px-2 py-0.5"> &nbsp;&nbsp;&nbsp;&nbsp;health -= amount</div>
-                                    <div className="bg-green-500/10 text-green-400 px-2 py-0.5 border-l-2 border-green-500 select-none">
-                                        +&nbsp;&nbsp;&nbsp;&nbsp;modulate = Color.RED
+                                <div className="space-y-1 text-[12px]">
+                                    <div className="text-zinc-500 px-2"> func _physics_process(delta):</div>
+                                    <div className="text-zinc-500 px-2"> &nbsp;&nbsp;&nbsp;&nbsp;var input_dir = Input.get_vector("left", "right", "up", "down")</div>
+                                    <div className="bg-red-500/10 text-red-400 px-2 border-l-2 border-red-500">
+                                        -&nbsp;&nbsp;&nbsp;&nbsp;velocity = input_dir * SPEED
                                     </div>
-                                    <div className="bg-green-500/10 text-green-400 px-2 py-0.5 border-l-2 border-green-500 select-none">
-                                        +&nbsp;&nbsp;&nbsp;&nbsp;await get_tree().create_timer(0.1).timeout
+                                    <div className="bg-green-500/10 text-green-400 px-2 border-l-2 border-green-500">
+                                        +&nbsp;&nbsp;&nbsp;&nbsp;var current_speed = SPEED * 2.0 if Input.is_action_pressed("shift") else SPEED
                                     </div>
-                                    <div className="bg-green-500/10 text-green-400 px-2 py-0.5 border-l-2 border-green-500 select-none">
-                                        +&nbsp;&nbsp;&nbsp;&nbsp;modulate = Color.WHITE
+                                    <div className="bg-green-500/10 text-green-400 px-2 border-l-2 border-green-500">
+                                        +&nbsp;&nbsp;&nbsp;&nbsp;velocity = input_dir * current_speed
                                     </div>
-                                    <div className="text-zinc-500 px-2 py-0.5"> &nbsp;&nbsp;&nbsp;&nbsp;if health &lt;= 0:</div>
-                                    <div className="text-zinc-500 px-2 py-0.5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die()</div>
+                                    <div className="text-zinc-500 px-2"> &nbsp;&nbsp;&nbsp;&nbsp;move_and_slide()</div>
                                 </div>
                             </div>
                         </div>
-
-                        {/* Annotation Badge */}
-                        <div className="absolute bottom-8 right-8 bg-violet-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-bold animate-pulse">
-                            Live Update Preview
-                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 4. SAFETY SPECS (THE BORING PART) */}
-            <section className="py-16 px-6 bg-zinc-900/20 border-t border-zinc-800">
+            {/* 5. SAFETY & DATA (BORING = TRUST) */}
+            <section className="py-24 px-6 bg-zinc-900/20 border-t border-zinc-800" id="safety">
                 <div className="max-w-4xl mx-auto">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
-                        <h2 className="text-2xl font-bold text-white">Reliability & Safety</h2>
-                        <div className="h-px bg-zinc-800 flex-1 w-full mx-8 hidden md:block"></div>
-                        <Link to="/trust" className="text-violet-400 hover:text-white text-sm">Read full policy →</Link>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <div className="space-y-2">
-                            <div className="text-zinc-500 text-xs uppercase font-bold tracking-wider">Privacy</div>
-                            <div className="font-medium text-zinc-200">Files sent only on request</div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="text-zinc-500 text-xs uppercase font-bold tracking-wider">Scanning</div>
-                            <div className="font-medium text-zinc-200">No background indexing</div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="text-zinc-500 text-xs uppercase font-bold tracking-wider">Control</div>
-                            <div className="font-medium text-zinc-200">Undo/Redo supported</div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="font-medium text-zinc-200">No silent changes</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            {/* 5. PROBLEM vs SOLUTION */}
-            <section className="py-24 px-6">
-                <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">Why we built this</h2>
+                        <h2 className="text-3xl font-bold text-white mb-4">Safety & Data Handling</h2>
+                        <p className="text-zinc-400">Clear rules on how we handle your code.</p>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-12">
-                        {/* The Problem */}
-                        <div className="space-y-8">
-                            <h2 className="text-2xl font-bold text-red-400 flex items-center gap-3">
-                                <BadgeAlert className="w-6 h-6" />
-                                The Problem
-                            </h2>
-                            <ul className="space-y-6">
-                                <li className="flex gap-4">
-                                    <div className="mt-1"><X className="w-5 h-5 text-red-500" /></div>
-                                    <div>
-                                        <h3 className="font-bold text-zinc-200">AI writes wrong code</h3>
-                                        <p className="text-zinc-400 text-sm mt-1">LLMs hallucinate. If you blindly paste their output, you break your project.</p>
-                                    </div>
-                                </li>
-                                <li className="flex gap-4">
-                                    <div className="mt-1"><X className="w-5 h-5 text-red-500" /></div>
-                                    <div>
-                                        <h3 className="font-bold text-zinc-200">Context switching kills flow</h3>
-                                        <p className="text-zinc-400 text-sm mt-1">Alt-tabbing to ChatGPT and back ruins your momentum.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
 
-                        {/* The Solution */}
-                        <div className="space-y-8">
-                            <h2 className="text-2xl font-bold text-green-400 flex items-center gap-3">
-                                <FileDiff className="w-6 h-6" />
-                                The Solution
-                            </h2>
-                            <ul className="space-y-6">
-                                <li className="flex gap-4">
-                                    <div className="mt-1"><Check className="w-5 h-5 text-green-500" /></div>
-                                    <div>
-                                        <h3 className="font-bold text-zinc-200">Diff-based patches</h3>
-                                        <p className="text-zinc-400 text-sm mt-1">See exactly what lines are added or removed. Nothing is hidden.</p>
-                                    </div>
-                                </li>
-                                <li className="flex gap-4">
-                                    <div className="mt-1"><Check className="w-5 h-5 text-green-500" /></div>
-                                    <div>
-                                        <h3 className="font-bold text-zinc-200">Editor-native</h3>
-                                        <p className="text-zinc-400 text-sm mt-1">Live inside Godot. Select nodes, hit generate, review, apply.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className="grid md:grid-cols-1 gap-4 max-w-2xl mx-auto">
+                        {[
+                            "Files are sent to AI only when you ask",
+                            "No background scanning",
+                            "No silent edits",
+                            "No training on your code",
+                            "All changes are reviewable before apply"
+                        ].map((item, i) => (
+                            <div key={i} className="flex items-center gap-4 p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+                                <Check className="w-5 h-5 text-violet-500 shrink-0" />
+                                <span className="text-zinc-200 font-medium">{item}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -247,12 +271,18 @@ export default function Home() {
             {/* Final CTA */}
             <section className="py-32 px-6 text-center border-t border-zinc-900 bg-zinc-950/50">
                 <div className="max-w-3xl mx-auto space-y-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">Stop fighting the AI. Start directing it.</h2>
-                    <Link to="/install">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">Join the safety-first AI movement for Godot.</h2>
+                    <Link to="/waitlist">
                         <Button variant="primary" className="h-14 px-8 text-xl w-full sm:w-auto">
-                            Get the Plugin
+                            Join the Waitlist
                         </Button>
                     </Link>
+                    <div className="pt-12 border-t border-zinc-900">
+                        <p className="text-xs text-zinc-500 max-w-md mx-auto">
+                            GazeAI is currently in private development.<br />
+                            We’re collecting early access requests while we finish safety-critical features.
+                        </p>
+                    </div>
                 </div>
             </section>
         </div>
