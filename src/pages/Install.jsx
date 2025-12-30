@@ -72,15 +72,13 @@ export default function Install() {
                             <p className="text-zinc-400">
                                 Grab the latest <span className="text-zinc-200">gaze_ai.zip</span> from our GitHub releases.
                             </p>
-                            <a
-                                href="https://github.com/RusithWelisara/GAZE-Plugin"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                to="/waitlist"
                                 className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-100 hover:bg-white text-zinc-900 rounded-lg font-medium transition-colors"
                             >
                                 <Download className="w-4 h-4" />
                                 Download ZIP
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Step 2 */}
