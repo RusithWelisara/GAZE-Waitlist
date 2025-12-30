@@ -31,7 +31,14 @@ export default function Waitlist() {
                     }
                 ]);
 
-            if (supabaseError) throw supabaseError;
+            if (supabaseError) {
+                // Check if it's a unique constraint violation (error code 23505)
+                if (supabaseError.code === '23505') {
+                    setError("You're already on the waitlist! We'll be in touch soon.");
+                    return;
+                }
+                throw supabaseError;
+            }
 
             setSubmitted(true);
         } catch (err) {
