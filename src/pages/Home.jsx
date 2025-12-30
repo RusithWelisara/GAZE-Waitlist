@@ -269,19 +269,25 @@ export default function Home() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-32 px-6 text-center border-t border-zinc-900 bg-zinc-950/50">
-                <div className="max-w-3xl mx-auto space-y-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">Join the safety-first AI movement for Godot.</h2>
-                    <Link to="/waitlist">
-                        <Button variant="primary" className="h-14 px-8 text-xl w-full sm:w-auto">
-                            Join the Waitlist
-                        </Button>
-                    </Link>
-                    <div className="pt-12 border-t border-zinc-900">
-                        <p className="text-xs text-zinc-500 max-w-md mx-auto">
-                            GazeAI is currently in private development.<br />
-                            We’re collecting early access requests while we finish safety-critical features.
-                        </p>
+            <section className="py-32 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <div className="bg-gradient-to-br from-violet-900/20 to-indigo-900/20 border border-violet-500/20 rounded-2xl p-12 text-center space-y-8">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                            Join the safety-first AI movement for Godot.
+                        </h2>
+                        <div className="flex justify-center">
+                            <Link to="/waitlist">
+                                <Button variant="primary" className="h-12 px-8 text-lg">
+                                    Join the Waitlist
+                                </Button>
+                            </Link>
+                        </div>
+                        <div className="pt-8 border-t border-white/5">
+                            <p className="text-xs text-zinc-500 max-w-md mx-auto leading-relaxed">
+                                GazeAI is currently in private development.<br />
+                                We’re collecting early access requests while we finish safety-critical features.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
