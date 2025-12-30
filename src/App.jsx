@@ -7,6 +7,7 @@ import Features from "./pages/Features";
 import HowItWorks from "./pages/HowItWorks";
 import Install from "./pages/Install";
 import Trust from "./pages/Trust";
+import Waitlist from "./pages/Waitlist";
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -30,6 +31,7 @@ const AnimatedRoutes = () => {
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
         <Route path="/install" element={<PageWrapper><Install /></PageWrapper>} />
         <Route path="/trust" element={<PageWrapper><Trust /></PageWrapper>} />
+        <Route path="/waitlist" element={<PageWrapper><Waitlist /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

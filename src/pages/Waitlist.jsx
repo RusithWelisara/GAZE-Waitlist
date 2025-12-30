@@ -1,14 +1,45 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Button from "../components/ui/Button";
-import { Check, Terminal, Layers, Zap } from "lucide-react";
+import { Check, Terminal, Layers, Zap, Loader2 } from "lucide-react";
+import { supabase } from "../lib/supabase";
 
 export default function Waitlist() {
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleSubmit = (e) => {
+    const [formData, setFormData] = useState({
+        email: "",
+        godot_version: "Godot 4.3+",
+        project_description: ""
+    });
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
+        setLoading(true);
+        setError(null);
+
+        try {
+            const { error: supabaseError } = await supabase
+                .from('waitlist')
+                .insert([
+                    {
+                        email: formData.email,
+                        godot_version: formData.godot_version,
+                        project_description: formData.project_description,
+                    }
+                ]);
+
+            if (supabaseError) throw supabaseError;
+
+            setSubmitted(true);
+        } catch (err) {
+            console.error("Error submitting to waitlist:", err);
+            setError("Something went wrong. Please try again later.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (submitted) {
@@ -23,7 +54,7 @@ export default function Waitlist() {
                         <Check size={40} />
                     </div>
                     <h1 className="text-4xl font-bold mb-4">Welcome to the future.</h1>
-                    <p className="text-zinc-400">You've been added to the waitlist.</p>
+                    <p className="text-zinc-400">Your request for private access has been received. We'll be in touch soon.</p>
                 </motion.div>
             </div>
         );
@@ -32,11 +63,11 @@ export default function Waitlist() {
     return (
         <div className="min-h-screen pt-32 pb-24 px-6 md:pt-48 md:pb-32">
             <div className="max-w-4xl mx-auto text-center mb-20">
-                <h1 className="text-4xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-400">
-                    The Future of Game Development.
+                <h1 className="text-4xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-500">
+                    Request Private Access
                 </h1>
                 <p className="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    A plugin that reads your whole project and builds real systems—not hallucinations.
+                    We're carefully expanding access to developers who prioritize safety and code quality in Godot.
                 </p>
             </div>
 
@@ -88,57 +119,66 @@ export default function Waitlist() {
 
                     <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                         <div>
-                            <label className="block text-sm font-medium text-zinc-300 mb-2">Name</label>
-                            <input required type="text" className="input-base" placeholder="John Doe" />
-                        </div>
-                        <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-2">Email</label>
-                            <input required type="email" className="input-base" placeholder="john@example.com" />
+                            <input
+                                required
+                                type="email"
+                                className="input-base"
+                                placeholder="dev@example.com"
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-zinc-300 mb-2">Engine</label>
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">Godot Version</label>
                             <div className="relative">
-                                <select className="input-base appearance-none cursor-pointer">
-                                    <option>Godot</option>
-                                    <option>Unity</option>
-                                    <option>Both</option>
+                                <select
+                                    className="input-base appearance-none cursor-pointer"
+                                    value={formData.godot_version}
+                                    onChange={(e) => setFormData({ ...formData, godot_version: e.target.value })}
+                                >
+                                    <option>Godot 4.3+</option>
+                                    <option>Godot 4.0 - 4.2</option>
+                                    <option>Godot 3.x</option>
                                 </select>
                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                 </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium text-zinc-300 mb-2">Team Size</label>
-                                <div className="relative">
-                                    <select className="input-base appearance-none cursor-pointer">
-                                        <option>Solo</option>
-                                        <option>2-5</option>
-                                        <option>5-10</option>
-                                        <option>10+</option>
-                                    </select>
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-zinc-300 mb-2">Use Case</label>
-                                <div className="relative">
-                                    <select className="input-base appearance-none cursor-pointer">
-                                        <option>Hobby</option>
-                                        <option>Commercial</option>
-                                        <option>Education</option>
-                                    </select>
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                    </div>
-                                </div>
-                            </div>
+                        <div>
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">What kind of project are you working on?</label>
+                            <textarea
+                                required
+                                className="input-base min-h-[100px] py-3 resize-none"
+                                placeholder="e.g. 2D Platformer, procedural RPG, etc."
+                                value={formData.project_description}
+                                onChange={(e) => setFormData({ ...formData, project_description: e.target.value })}
+                            ></textarea>
                         </div>
 
-                        <Button variant="primary" className="w-full py-3 text-lg mt-4 shadow-lg shadow-violet-500/20" type="submit">Join Waitlist</Button>
+                        {error && (
+                            <p className="text-red-500 text-sm mt-2">{error}</p>
+                        )}
+
+                        <Button
+                            variant="primary"
+                            className="w-full py-4 text-lg mt-4 shadow-lg shadow-violet-500/20 disabled:opacity-50 flex items-center justify-center gap-2"
+                            type="submit"
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <>
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    Submitting...
+                                </>
+                            ) : (
+                                "Request Private Access"
+                            )}
+                        </Button>
+                        <p className="text-[10px] text-center text-zinc-600 uppercase tracking-widest mt-4">
+                            Early access is manually approved
+                        </p>
                     </form>
                 </div>
             </div>
