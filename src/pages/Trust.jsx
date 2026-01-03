@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ShieldCheck, Lock, EyeOff, ServerOff, FileText } from 'lucide-react';
 
 const TrustPoint = ({ icon: Icon, title, description }) => (
@@ -15,6 +15,10 @@ const TrustPoint = ({ icon: Icon, title, description }) => (
 );
 
 export default function Trust() {
+    useEffect(() => {
+        document.title = "Data & Safety - GAZE AI Transparency & Privacy";
+    }, []);
+
     return (
         <div className="min-h-screen pt-32 pb-20 px-6">
             <div className="max-w-4xl mx-auto space-y-16">

@@ -1,8 +1,12 @@
-
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { GitPullRequest, FileDiff, CheckSquare, AppWindow, FileCode2 } from "lucide-react";
 
 export default function Features() {
+    useEffect(() => {
+        document.title = "GAZE Features - GDScript AI Editing Tools";
+    }, []);
+
     const features = [
         {
             title: "Patch-Based Editing",
