@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Terminal, Key, FolderDown, AlertCircle, Trash2, Shield, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,10 @@ const CodeBlock = ({ children }) => (
 );
 
 export default function Install() {
+    useEffect(() => {
+        document.title = "Install GAZE - Godot AI Plugin Installation";
+    }, []);
+
     return (
         <div className="min-h-screen pt-32 pb-20 px-6">
             <div className="max-w-4xl mx-auto space-y-16">

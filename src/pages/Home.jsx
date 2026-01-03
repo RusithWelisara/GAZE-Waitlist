@@ -1,15 +1,19 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert } from "lucide-react";
 
 export default function Home() {
+    useEffect(() => {
+        document.title = "GAZE - AI Assistant Inside the Godot Editor";
+    }, []);
+
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
             {/* 1. HERO SECTION */}
-            <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6">
+            <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-background to-background pointer-events-none"></div>
                 <div className="max-w-4xl mx-auto text-center relative z-10">
                     <motion.h1
@@ -17,25 +21,36 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
                     >
-                        AI-assisted code changes for Godot — <span className="text-zinc-500 text-3xl md:text-5xl block mt-2">reviewed before they touch your project.</span>
+                        AI Assistant Inside the Godot Editor
+                        <span className="text-zinc-500 text-2xl md:text-4xl block mt-4 font-medium">reviewed before AI touch your project.</span>
                     </motion.h1>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto"
+                    >
+                        {[
+                            "Works inside Godot",
+                            "Edits GDScript",
+                            "Shows diffs",
+                            "Requires approval"
+                        ].map((item, i) => (
+                            <div key={i} className="flex flex-col items-center gap-2 p-4 bg-zinc-900/40 border border-zinc-800 rounded-xl">
+                                <Check className="w-5 h-5 text-violet-500" />
+                                <span className="text-sm font-medium text-zinc-300">{item}</span>
+                            </div>
+                        ))}
+                    </motion.div>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl mx-auto"
-                    >
-                        GazeAI is a Godot editor plugin that turns natural-language requests into visible, reviewable patches, not blind code generation.
-                    </motion.p>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-sm text-zinc-500 mb-10 font-mono"
+                        className="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto"
                     >
-                        Built for developers who don’t trust AI with their code — and shouldn’t.
+                        GAZE is an AI assistant for Godot that turns natural-language requests into reviewable patches. Built for professional GDScript AI workflows.
                     </motion.p>
 
                     <motion.div
@@ -45,12 +60,12 @@ export default function Home() {
                         className="flex flex-col items-center justify-center gap-4"
                     >
                         <Link to="/waitlist" className="w-full sm:w-auto">
-                            <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20">
-                                Join the Private Access Waitlist
+                            <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20" aria-label="Get early access when GAZE is released">
+                                Get early access when GAZE is released
                             </Button>
                         </Link>
-                        <span className="text-xs text-zinc-500 uppercase tracking-widest">
-                            Early access will be limited and manual.
+                        <span className="text-xs text-zinc-500 uppercase tracking-widest font-mono">
+                            Not yet released. Manual invite only.
                         </span>
                     </motion.div>
                 </div>
@@ -61,8 +76,8 @@ export default function Home() {
                 <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
                 <div className="max-w-5xl mx-auto relative z-10">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Are you building for real?</h2>
-                        <p className="text-zinc-500 max-w-xl mx-auto">We're selective about who enters the private access group. GazeAI is a tool for professionals, not a toy.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Godot AI Plugin for Professionals</h2>
+                        <p className="text-zinc-500 max-w-xl mx-auto">We're selective about who enters the private access group. GAZE is a tool for professional game development, not a toy.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
@@ -182,8 +197,8 @@ export default function Home() {
             <section className="px-6 py-24 bg-zinc-900/10">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-white mb-4">Verification first.</h2>
-                        <p className="text-zinc-400">See exactly what changes. No hidden deletions.</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">AI Code Editor for Godot</h2>
+                        <p className="text-zinc-400">See exactly what changes. No hidden deletions in your GDScript files.</p>
                     </div>
 
                     <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl relative">
@@ -243,12 +258,36 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* 5. SAFETY & DATA (BORING = TRUST) */}
+            {/* 5. TRUST SECTION (CRITICAL FOR SEO) */}
+            <section className="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-white mb-4">Built for Control, Not Automation</h2>
+                        <p className="text-zinc-500">A Godot AI plugin that respects your workflow and project safety.</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                        {[
+                            { title: "Manual approval", desc: "No code changes without explicit dev sign-off." },
+                            { title: "No hidden edits", desc: "Every modification is visible in a unified diff view." },
+                            { title: "No background agents", desc: "GAZE only runs when you ask it to solve a specific problem." },
+                            { title: "Editor-first design", desc: "The UI lives inside Godot, not a separate window or browser." }
+                        ].map((item, i) => (
+                            <div key={i} className="p-6 bg-zinc-900/40 border border-zinc-800 rounded-xl">
+                                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                                <p className="text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. SAFETY & DATA (BORING = TRUST) */}
             <section className="py-24 px-6 bg-zinc-900/20 border-t border-zinc-800" id="safety">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold text-white mb-4">Safety & Data Handling</h2>
-                        <p className="text-zinc-400">Clear rules on how we handle your code.</p>
+                        <p className="text-zinc-400">Clear rules on how we handle your code for AI code editing.</p>
                     </div>
 
                     <div className="grid md:grid-cols-1 gap-4 max-w-2xl mx-auto">
@@ -278,7 +317,7 @@ export default function Home() {
                         <div className="flex justify-center">
                             <Link to="/waitlist">
                                 <Button variant="primary" className="h-12 px-8 text-lg">
-                                    Join the Waitlist
+                                    Get early access when GAZE is released
                                 </Button>
                             </Link>
                         </div>

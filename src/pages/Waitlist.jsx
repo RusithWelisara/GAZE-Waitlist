@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Button from "../components/ui/Button";
 import { Check, Terminal, Layers, Zap, Loader2 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 
 export default function Waitlist() {
+    useEffect(() => {
+        document.title = "Get Early Access - GAZE AI for Godot";
+    }, []);
+
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const [formData, setFormData] = useState({
         email: "",
-        godot_version: "Godot 4.3+",
-        project_description: ""
+        years_experience: "",
+        biggest_pain: "",
+        invite_reason: ""
     });
 
     const handleSubmit = async (e) => {
@@ -26,8 +31,9 @@ export default function Waitlist() {
                 .insert([
                     {
                         email: formData.email,
-                        godot_version: formData.godot_version,
-                        project_description: formData.project_description,
+                        years_experience: formData.years_experience,
+                        biggest_pain: formData.biggest_pain,
+                        invite_reason: formData.invite_reason,
                     }
                 ]);
 
@@ -60,8 +66,8 @@ export default function Waitlist() {
                     <div className="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                         <Check size={40} />
                     </div>
-                    <h1 className="text-4xl font-bold mb-4">Welcome to the future.</h1>
-                    <p className="text-zinc-400">Your request for private access has been received. We'll be in touch soon.</p>
+                    <h1 className="text-4xl font-bold mb-4">Request Received</h1>
+                    <p className="text-zinc-400">We'll contact you when early access seats become available.</p>
                 </motion.div>
             </div>
         );
@@ -71,10 +77,10 @@ export default function Waitlist() {
         <div className="min-h-screen pt-32 pb-24 px-6 md:pt-48 md:pb-32">
             <div className="max-w-4xl mx-auto text-center mb-20">
                 <h1 className="text-4xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-500">
-                    Request Private Access
+                    Get early access when GAZE is released
                 </h1>
                 <p className="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    We're carefully expanding access to developers who prioritize safety and code quality in Godot.
+                    We are opening access to developers who need technical clarity and control when using AI in the Godot engine.
                 </p>
             </div>
 
@@ -137,30 +143,34 @@ export default function Waitlist() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-zinc-300 mb-2">Godot Version</label>
-                            <div className="relative">
-                                <select
-                                    className="input-base appearance-none cursor-pointer"
-                                    value={formData.godot_version}
-                                    onChange={(e) => setFormData({ ...formData, godot_version: e.target.value })}
-                                >
-                                    <option>Godot 4.3+</option>
-                                    <option>Godot 4.0 - 4.2</option>
-                                    <option>Godot 3.x</option>
-                                </select>
-                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                            </div>
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">Years using Godot</label>
+                            <input
+                                required
+                                type="text"
+                                className="input-base"
+                                placeholder="e.g. 2 years, just started, etc."
+                                value={formData.years_experience}
+                                onChange={(e) => setFormData({ ...formData, years_experience: e.target.value })}
+                            />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-zinc-300 mb-2">What kind of project are you working on?</label>
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">Biggest pain when editing scripts</label>
                             <textarea
                                 required
-                                className="input-base min-h-[100px] py-3 resize-none"
-                                placeholder="e.g. 2D Platformer, procedural RPG, etc."
-                                value={formData.project_description}
-                                onChange={(e) => setFormData({ ...formData, project_description: e.target.value })}
+                                className="input-base min-h-[80px] py-3 resize-none"
+                                placeholder="What slows you down the most?"
+                                value={formData.biggest_pain}
+                                onChange={(e) => setFormData({ ...formData, biggest_pain: e.target.value })}
+                            ></textarea>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">Why should we invite you?</label>
+                            <textarea
+                                required
+                                className="input-base min-h-[80px] py-3 resize-none"
+                                placeholder="Tell us about your project or workflow."
+                                value={formData.invite_reason}
+                                onChange={(e) => setFormData({ ...formData, invite_reason: e.target.value })}
                             ></textarea>
                         </div>
 
@@ -180,7 +190,7 @@ export default function Waitlist() {
                                     Submitting...
                                 </>
                             ) : (
-                                "Request Private Access"
+                                "Get early access"
                             )}
                         </Button>
                         <p className="text-[10px] text-center text-zinc-600 uppercase tracking-widest mt-4">

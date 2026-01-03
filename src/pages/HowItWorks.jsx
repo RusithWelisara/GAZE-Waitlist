@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, FileCode, CheckCircle, Shield, GitCommit } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -51,12 +51,16 @@ const Step = ({ number, title, description, icon: Icon, delay }) => (
 );
 
 export default function HowItWorks() {
+    useEffect(() => {
+        document.title = "How GAZE Works - AI Code Changes for Godot";
+    }, []);
+
     return (
         <div className="min-h-screen pt-32 pb-20 px-6">
             <div className="max-w-5xl mx-auto space-y-24">
                 <div className="text-center max-w-2xl mx-auto space-y-6">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
-                        From Prompt to Patch
+                        The GAZE Workflow
                     </h1>
                     <p className="text-xl text-zinc-400">
                         Understanding how GazeAI keeps you in control of your codebase.
@@ -66,78 +70,53 @@ export default function HowItWorks() {
                 <div className="space-y-8 md:space-y-0 relative">
                     <Step
                         number="1"
-                        title="Select Context"
+                        title="Read project context"
                         delay={0.1}
                         icon={FileCode}
                         description={
-                            <>
-                                <p>
-                                    You explicitly select which files the AI can see.
-                                    GazeAI builds a focused prompt containing only the relevant code.
-                                </p>
-                                <ul className="space-y-2 mt-4 text-base">
-                                    <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-violet-500" /> Only selected files are sent</li>
-                                    <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-violet-500" /> No hidden repository scanning</li>
-                                    <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-violet-500" /> Granular control over token usage</li>
-                                </ul>
-                            </>
+                            <p>
+                                GAZE analyzes your current script and relevant project files.
+                                It builds context to understand your logic before suggesting changes.
+                            </p>
                         }
                     />
 
                     <Step
                         number="2"
-                        title="AI Generates Patch"
+                        title="Propose changes"
                         delay={0.2}
                         icon={GitCommit}
                         description={
-                            <>
-                                <p>
-                                    The AI doesn't rewrite your file. It outputs a patch file (diff)
-                                    describing exactly what should change.
-                                </p>
-                                <p className="mt-2">
-                                    This prevents the "hallucinated delete" problem where AI helps you
-                                    by deleting the rest of your script.
-                                </p>
-                            </>
+                            <p>
+                                Instead of overwriting files, the AI generates a proposed update.
+                                This ensures no code is modified without your initial request.
+                            </p>
                         }
                     />
 
                     <Step
                         number="3"
-                        title="You Review"
+                        title="Show diffs"
                         delay={0.3}
                         icon={Shield}
                         description={
-                            <>
-                                <p>
-                                    Review the Unified Diff before applying. You see exactly what lines
-                                    will be added or removed.
-                                </p>
-                                <p className="mt-2">
-                                    If the logic looks wrong, you reject it. No code is touched until
-                                    you click "Apply".
-                                </p>
-                            </>
+                            <p>
+                                Review changes in a standard unified diff format inside Godot.
+                                See exactly which lines will be added or removed before finishing.
+                            </p>
                         }
                     />
 
                     <Step
                         number="4"
-                        title="Apply via Editor"
+                        title="Apply on approval"
                         delay={0.4}
                         icon={CheckCircle}
                         description={
-                            <>
-                                <p>
-                                    The patch is applied directly to your files on disk. The Godot editor
-                                    hot-reloads the changes immediately.
-                                </p>
-                                <p className="mt-2">
-                                    Made a mistake? Use standard undo/redo or git to revert.
-                                    No editor restart required.
-                                </p>
-                            </>
+                            <p>
+                                Click apply to merge the changes into your GDScript file.
+                                The Godot editor hot-reloads the script automatically for testing.
+                            </p>
                         }
                     />
                 </div>
