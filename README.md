@@ -1,16 +1,127 @@
-# React + Vite
+# Gaze-Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI assistance inside the game editor — with developer control.
 
-Currently, two official plugins are available:
+GAZE is an early-stage AI plugin designed to work inside game engines (starting with Godot) to help developers modify code and project structure safely, transparently, and intentionally.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository is a public overview of the project.
+The core plugin code is private while the product is under active development.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What GAZE Is
 
-## Expanding the ESLint configuration
+GAZE is not a “generate everything” button.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+It is an AI co-pilot that:
+
+- reads an existing project
+
+- proposes changes
+
+- shows diffs before anything is applied
+
+- lets developers explicitly approve or reject edits
+
+The goal is assist, not replace.
+
+---
+
+## Current Capabilities (Early MVP)
+
+As of now, GAZE can:
+
+- Edit GDScript files inside the Godot editor
+
+- Generate proposed changes based on natural language instructions
+
+- Display diffs for review
+
+- Apply changes only after user confirmation
+
+This is intentionally limited.
+Reliability and trust come before breadth.
+
+---
+
+## What GAZE Is Not
+
+- Not a new game engine
+
+- Not a no-code toy
+
+- Not an “AI does everything” platform
+
+- Not a public SDK (yet)
+
+## GAZE is being built for developers who care about:
+
+- control
+
+- readability
+
+- reversibility
+
+- real projects, not demos
+
+---
+
+## Development Status
+
+GAZE is currently:
+
+- Private alpha
+
+- Single-file editing
+
+- No public release yet
+
+Public access is planned after March.
+
+If you are an experienced Godot developer and want to give feedback, you can join the waitlist below.
+
+---
+
+## Website & Updates
+
+🔗 https://gazeplugin.vercel.app/
+
+The website is used for:
+
+- product explanation
+
+- waitlist collection
+
+- release updates
+
+---
+
+## Philosophy
+
+AI tools fail when they:
+
+- hide changes
+
+- overwrite context
+
+- break trust
+
+GAZE is being built around one principle:
+
+*`Nothing changes unless the developer explicitly allows it.`*
+
+---
+
+## Contact
+
+Built by a small team.
+Project lead: *Rusith Welisara*
+
+For early feedback or discussion, reach out via the website.
+
+---
+
+## Disclaimer
+
+This project is under active development.
+Features, scope, and implementation details may change.
