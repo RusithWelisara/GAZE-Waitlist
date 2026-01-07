@@ -70,52 +70,48 @@ export default function HowItWorks() {
                 <div className="space-y-8 md:space-y-0 relative">
                     <Step
                         number="1"
-                        title="Read project context"
+                        title="Select file or scope"
                         delay={0.1}
                         icon={FileCode}
                         description={
                             <p>
-                                GAZE analyzes your current script and relevant project files.
-                                It builds context to understand your logic before suggesting changes.
+                                Choose the script you want to modify directly in the Godot or Gaze editor.
                             </p>
                         }
                     />
 
                     <Step
                         number="2"
-                        title="Propose changes"
+                        title="Describe change"
                         delay={0.2}
                         icon={GitCommit}
                         description={
                             <p>
-                                Instead of overwriting files, the AI generates a proposed update.
-                                This ensures no code is modified without your initial request.
+                                Tell Gaze what you want to do in natural language (e.g., "Add a double jump").
                             </p>
                         }
                     />
 
                     <Step
                         number="3"
-                        title="Show diffs"
+                        title="Review generated patch"
                         delay={0.3}
                         icon={Shield}
                         description={
                             <p>
-                                Review changes in a standard unified diff format inside Godot.
-                                See exactly which lines will be added or removed before finishing.
+                                Inspect the color-coded diff to see exactly what lines are added or removed.
                             </p>
                         }
                     />
 
                     <Step
                         number="4"
-                        title="Apply on approval"
+                        title="Apply or reject"
                         delay={0.4}
                         icon={CheckCircle}
                         description={
                             <p>
-                                Click apply to merge the changes into your GDScript file.
-                                The Godot editor hot-reloads the script automatically for testing.
+                                One click to merge the code into your project or discard it completely.
                             </p>
                         }
                     />

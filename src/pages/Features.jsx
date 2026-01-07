@@ -67,6 +67,44 @@ export default function Features() {
                         </motion.div>
                     ))}
                 </div>
+
+                <div className="mt-24 grid md:grid-cols-2 gap-12">
+                    {/* Limitations - Builds Trust */}
+                    <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-8">
+                        <h2 className="text-2xl font-bold text-zinc-200 mb-6">Current Limitations</h2>
+                        <ul className="space-y-4">
+                            {[
+                                "Single-file edits only (no multi-file refactoring yet)",
+                                "GDScript focus (C# support is experimental)",
+                                "No automatic scene (.tscn) modifications",
+                                "Requires an OpenAI/Anthropic API key"
+                            ].map((item, i) => (
+                                <li key={i} className="flex gap-3 text-zinc-400">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2.5 shrink-0"></div>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* What We Will Never Do */}
+                    <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-8">
+                        <h2 className="text-2xl font-bold text-zinc-200 mb-6">What GAZE will NEVER do</h2>
+                        <ul className="space-y-4">
+                            {[
+                                "Never auto-apply changes without review",
+                                "Never rewrite your entire project in background",
+                                "Never hide the diff viewer",
+                                "Never modify files without explicit approval"
+                            ].map((item, i) => (
+                                <li key={i} className="flex gap-3 text-zinc-400">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2.5 shrink-0"></div>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     );

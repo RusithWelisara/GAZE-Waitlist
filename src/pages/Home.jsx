@@ -7,7 +7,7 @@ import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert } from "lucide-
 
 export default function Home() {
     useEffect(() => {
-        document.title = "GAZE - AI Assistant Inside the Godot Editor";
+        document.title = "GAZE — Safe AI Code Patching for Godot Developers";
     }, []);
 
     return (
@@ -21,52 +21,44 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
                     >
-                        AI Assistant Inside the Godot Editor
-                        <span className="text-zinc-500 text-2xl md:text-4xl block mt-4 font-medium">reviewed before AI touch your project.</span>
+                        Make AI changes to your Godot project — safely, visibly, and reversibly.
                     </motion.h1>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto"
-                    >
-                        {[
-                            "Works inside Godot",
-                            "Edits GDScript",
-                            "Shows diffs",
-                            "Requires approval"
-                        ].map((item, i) => (
-                            <div key={i} className="flex flex-col items-center gap-2 p-4 bg-zinc-900/40 border border-zinc-800 rounded-xl">
-                                <Check className="w-5 h-5 text-violet-500" />
-                                <span className="text-sm font-medium text-zinc-300">{item}</span>
-                            </div>
-                        ))}
-                    </motion.div>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ delay: 0.1 }}
                         className="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto"
                     >
-                        GAZE is an AI assistant for Godot that turns natural-language requests into reviewable patches. Built for professional GDScript AI workflows.
+                        GAZE generates <span className="text-zinc-200 font-semibold">reviewable code patches</span>, not blind edits.
+                        You see the diff. You approve it. Nothing touches your project without consent.
                     </motion.p>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-col items-center justify-center gap-4"
+                        transition={{ delay: 0.2 }}
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <Link to="/waitlist" className="w-full sm:w-auto">
-                            <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20" aria-label="Get early access when GAZE is released">
-                                Get early access when GAZE is released
+                            <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20" aria-label="Join the Early Access Waitlist">
+                                Join the Early Access Waitlist
                             </Button>
                         </Link>
-                        <span className="text-xs text-zinc-500 uppercase tracking-widest font-mono">
-                            Not yet released. Manual invite only.
-                        </span>
+                        <Link to="/how-it-works" className="w-full sm:w-auto">
+                            <Button variant="secondary" className="text-lg px-8 py-4 w-full sm:w-auto border border-zinc-700 hover:bg-zinc-800" aria-label="See How Safe Patching Works">
+                                See How Safe Patching Works
+                            </Button>
+                        </Link>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="mt-8 text-xs text-zinc-500 uppercase tracking-widest font-mono"
+                    >
+                        Not yet released. Manual invite only.
                     </motion.div>
                 </div>
             </section>
@@ -262,16 +254,17 @@ export default function Home() {
             <section className="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">Built for Control, Not Automation</h2>
-                        <p className="text-zinc-500">A Godot AI plugin that respects your workflow and project safety.</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">Why This Is Safe</h2>
+                        <p className="text-zinc-500">We prioritize your project's integrity over AI autonomy.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
                         {[
-                            { title: "Manual approval", desc: "No code changes without explicit dev sign-off." },
-                            { title: "No hidden edits", desc: "Every modification is visible in a unified diff view." },
-                            { title: "No background agents", desc: "GAZE only runs when you ask it to solve a specific problem." },
-                            { title: "Editor-first design", desc: "The UI lives inside Godot, not a separate window or browser." }
+                            { title: "No silent edits", desc: "GAZE never modifies your code without you seeing it first." },
+                            { title: "No auto-apply", desc: "You must manually click 'Apply' to accept any change." },
+                            { title: "No cloud execution", desc: "Your project runs locally. AI validates; it doesn't execute." },
+                            { title: "Human-in-the-loop always", desc: "AI suggests, you decide. You remain the architect." },
+                            { title: "Diff-first architecture", desc: "We prioritize the patch view over the chat interface." }
                         ].map((item, i) => (
                             <div key={i} className="p-6 bg-zinc-900/40 border border-zinc-800 rounded-xl">
                                 <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>

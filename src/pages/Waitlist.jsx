@@ -75,40 +75,19 @@ export default function Waitlist() {
 
     return (
         <div className="min-h-screen pt-32 pb-24 px-6 md:pt-48 md:pb-32">
-            <div className="max-w-4xl mx-auto text-center mb-20">
-                <h1 className="text-4xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-500">
-                    Get early access when GAZE is released
+            <div className="max-w-4xl mx-auto text-center mb-12">
+                <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-500">
+                    Early Access for Developers Who Care About Code Safety
                 </h1>
                 <p className="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    We are opening access to developers who need technical clarity and control when using AI in the Godot engine.
+                    GAZE is not for one-click magic. It's for devs who want AI speed <span className="text-zinc-200 font-semibold italic">without losing control</span>.
                 </p>
-            </div>
-
-            {/* Reused How It Works (Simplified) */}
-            <div className="max-w-6xl mx-auto mb-24">
-                <div className="grid md:grid-cols-3 gap-6">
-                    <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
-                        <div className="text-violet-500 mb-4 bg-violet-500/10 w-12 h-12 rounded-lg flex items-center justify-center"><Terminal size={24} /></div>
-                        <h3 className="font-bold mb-2 text-lg">1. Ask</h3>
-                        <p className="text-sm text-zinc-400 leading-relaxed">Describe what you need in plain English. No complex prompt engineering required.</p>
-                    </div>
-                    <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
-                        <div className="text-blue-500 mb-4 bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center"><Layers size={24} /></div>
-                        <h3 className="font-bold mb-2 text-lg">2. See</h3>
-                        <p className="text-sm text-zinc-400 leading-relaxed">Review generated patches and scene changes before they touch your code.</p>
-                    </div>
-                    <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
-                        <div className="text-green-500 mb-4 bg-green-500/10 w-12 h-12 rounded-lg flex items-center justify-center"><Zap size={24} /></div>
-                        <h3 className="font-bold mb-2 text-lg">3. Apply</h3>
-                        <p className="text-sm text-zinc-400 leading-relaxed">One-click integration into your engine. Undo anytime with version control.</p>
-                    </div>
-                </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto items-start">
                 {/* Benefits */}
                 <div className="bg-zinc-900/20 p-8 rounded-2xl border border-zinc-800">
-                    <h3 className="text-2xl font-bold mb-8">Benefits for Early Access</h3>
+                    <h3 className="text-2xl font-bold mb-8">What to Expect</h3>
                     <ul className="space-y-6">
                         {[
                             "Cheaper lifetime rate",
@@ -124,6 +103,13 @@ export default function Waitlist() {
                             </li>
                         ))}
                     </ul>
+                    <div className="mt-12 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+                        <h4 className="text-amber-500 font-bold mb-2 text-sm uppercase tracking-wide">Timeline Update</h4>
+                        <p className="text-zinc-400 text-sm leading-relaxed">
+                            Early access starts after <strong>March 2026</strong>. <br />
+                            We’re prioritizing stability over speed.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Form */}
@@ -143,15 +129,18 @@ export default function Waitlist() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-zinc-300 mb-2">Years using Godot</label>
-                            <input
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">Experience level with Godot</label>
+                            <select
                                 required
-                                type="text"
-                                className="input-base"
-                                placeholder="e.g. 2 years, just started, etc."
+                                className="input-base w-full appearance-none bg-zinc-900"
                                 value={formData.years_experience}
                                 onChange={(e) => setFormData({ ...formData, years_experience: e.target.value })}
-                            />
+                            >
+                                <option value="" disabled>Select your level</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-zinc-300 mb-2">Biggest pain when editing scripts</label>

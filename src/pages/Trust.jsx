@@ -72,6 +72,40 @@ export default function Trust() {
                     </div>
                 </div>
 
+                {/* FAQ Section */}
+                <div className="space-y-8 pt-12 border-t border-zinc-800">
+                    <h2 className="text-3xl font-bold text-center text-white">Common Questions</h2>
+                    <div className="grid gap-6">
+                        {[
+                            {
+                                q: "Does GAZE send my full project to the cloud?",
+                                a: "No. GAZE only sends the specific script file and relevant context nodes you select. We do not upload your entire project folder."
+                            },
+                            {
+                                q: "Can I undo changes?",
+                                a: "Yes. All changes are applied via standard Godot undo/redo history or version control (Git). You can revert any applied patch instantly."
+                            },
+                            {
+                                q: "What if the AI makes a mistake?",
+                                a: "You will see it in the diff viewer before applying. If you spot an error, you simply click 'Reject' or edit the prompt and try again."
+                            },
+                            {
+                                q: "Is this like Unity Muse?",
+                                a: "Muse is an all-encompassing suite often focused on generation. GAZE is a surgical tool focused specifically on safe, reviewable code modification."
+                            },
+                            {
+                                q: "Who is this NOT for?",
+                                a: "It is not for developers who want a 'magic button' to build a whole game. It is for those who want an intelligent assistant to write functions while they maintain architectural control."
+                            }
+                        ].map((faq, i) => (
+                            <div key={i} className="bg-zinc-900/30 border border-zinc-800 rounded-xl p-6">
+                                <h3 className="text-lg font-bold text-white mb-2">{faq.q}</h3>
+                                <p className="text-zinc-400">{faq.a}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
             </div>
         </div>
     );
