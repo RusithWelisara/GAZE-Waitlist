@@ -15,7 +15,7 @@ export default function Waitlist() {
 
     const [formData, setFormData] = useState({
         email: "",
-        years_experience: "",
+        experience_level: "",
         biggest_pain: "",
         invite_reason: ""
     });
@@ -31,7 +31,7 @@ export default function Waitlist() {
                 .insert([
                     {
                         email: formData.email,
-                        years_experience: formData.years_experience,
+                        experience_level: formData.experience_level,
                         biggest_pain: formData.biggest_pain,
                         invite_reason: formData.invite_reason,
                     }
@@ -133,8 +133,8 @@ export default function Waitlist() {
                             <select
                                 required
                                 className="input-base w-full appearance-none bg-zinc-900"
-                                value={formData.years_experience}
-                                onChange={(e) => setFormData({ ...formData, years_experience: e.target.value })}
+                                value={formData.experience_level}
+                                onChange={(e) => setFormData({ ...formData, experience_level: e.target.value })}
                             >
                                 <option value="" disabled>Select your level</option>
                                 <option value="Beginner">Beginner</option>
