@@ -17,6 +17,7 @@ export default function Waitlist() {
         email: "",
         experience_level: "",
         biggest_pain: "",
+        expectations: "",
         invite_reason: ""
     });
 
@@ -33,6 +34,7 @@ export default function Waitlist() {
                         email: formData.email,
                         experience_level: formData.experience_level,
                         biggest_pain: formData.biggest_pain,
+                        expectations: formData.expectations,
                         invite_reason: formData.invite_reason,
                     }
                 ]);
@@ -150,6 +152,16 @@ export default function Waitlist() {
                                 placeholder="What slows you down the most?"
                                 value={formData.biggest_pain}
                                 onChange={(e) => setFormData({ ...formData, biggest_pain: e.target.value })}
+                            ></textarea>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-zinc-300 mb-2">What is one thing you expect GAZE to do?</label>
+                            <textarea
+                                required
+                                className="input-base min-h-[80px] py-3 resize-none"
+                                placeholder="e.g. Catch type errors, explain legacy code..."
+                                value={formData.expectations}
+                                onChange={(e) => setFormData({ ...formData, expectations: e.target.value })}
                             ></textarea>
                         </div>
                         <div>
