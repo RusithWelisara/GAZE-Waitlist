@@ -1,7 +1,7 @@
 
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Maximize2, X } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,75 @@ import DescribeChangeVideo from '../assets/How It Works/Describe Change.mp4';
 import ReviewPatchVideo from '../assets/How It Works/Review Patch.mp4';
 import ApplyRejectVideo from '../assets/How It Works/Apply OR Reject.mp4';
 
-const Step = ({ number, title, description, video, delay }) => (
+// Video Modal Component for fullscreen view
+const VideoModal = ({ video, title, isOpen, onClose }) => {
+    useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        if (isOpen) {
+            document.addEventListener('keydown', handleEsc);
+            document.body.style.overflow = 'hidden';
+        }
+        return () => {
+            document.removeEventListener('keydown', handleEsc);
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen, onClose]);
+
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+                    onClick={onClose}
+                >
+                    {/* Backdrop */}
+                    <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+
+                    {/* Modal Content */}
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        className="relative w-full max-w-6xl z-10"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={onClose}
+                            className="absolute -top-12 right-0 text-zinc-400 hover:text-white transition-colors flex items-center gap-2"
+                        >
+                            <span className="text-sm">Press ESC or click to close</span>
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        {/* Title */}
+                        <h3 className="text-xl font-bold text-white mb-4">{title}</h3>
+
+                        {/* Video Container */}
+                        <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+                            <video
+                                src={video}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-auto"
+                            />
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+};
+
+const Step = ({ number, title, description, video, delay, onExpand }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -39,20 +107,33 @@ const Step = ({ number, title, description, video, delay }) => (
 
                 <h3 className="hidden md:block text-2xl font-bold text-white mb-4">{title}</h3>
 
+                {/* Changed from 50/50 to 1fr/2fr for larger video on desktop */}
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-4 text-zinc-400 leading-relaxed text-lg">
                         {description}
                     </div>
 
-                    <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl overflow-hidden min-h-[200px] flex items-center justify-center">
+                    {/* Video container with click-to-expand */}
+                    <div
+                        className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl overflow-hidden min-h-[200px] flex items-center justify-center relative group cursor-pointer"
+                        onClick={() => onExpand(video, title)}
+                    >
                         <video
                             src={video}
                             autoPlay
                             loop
                             muted
                             playsInline
-                            className="w-full h-auto"
+                            className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
                         />
+
+                        {/* Expand overlay - subtle to not hurt video visibility */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div className="bg-black/50 text-white/80 px-3 py-1.5 rounded-md flex items-center gap-2 shadow-lg text-xs">
+                                <Maximize2 className="w-3 h-3" />
+                                <span className="font-medium">Click to expand</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,12 +142,33 @@ const Step = ({ number, title, description, video, delay }) => (
 );
 
 export default function HowItWorks() {
+    const [modalVideo, setModalVideo] = useState(null);
+    const [modalTitle, setModalTitle] = useState('');
+
     useEffect(() => {
         document.title = "How GAZE Works - AI Code Changes for Godot";
     }, []);
 
+    const handleExpand = (video, title) => {
+        setModalVideo(video);
+        setModalTitle(title);
+    };
+
+    const handleCloseModal = () => {
+        setModalVideo(null);
+        setModalTitle('');
+    };
+
     return (
         <div className="min-h-screen pt-32 pb-20 px-6">
+            {/* Video Modal */}
+            <VideoModal
+                video={modalVideo}
+                title={modalTitle}
+                isOpen={!!modalVideo}
+                onClose={handleCloseModal}
+            />
+
             <div className="max-w-5xl mx-auto space-y-24">
                 <div className="text-center max-w-2xl mx-auto space-y-6">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
@@ -83,6 +185,7 @@ export default function HowItWorks() {
                         title="Select file or scope"
                         delay={0.1}
                         video={SelectFilesVideo}
+                        onExpand={handleExpand}
                         description={
                             <p>
                                 Choose the script you want to modify directly in the Godot or Gaze editor.
@@ -95,6 +198,7 @@ export default function HowItWorks() {
                         title="Describe change"
                         delay={0.2}
                         video={DescribeChangeVideo}
+                        onExpand={handleExpand}
                         description={
                             <p>
                                 Tell Gaze what you want to do in natural language (e.g., "Add a double jump").
@@ -107,6 +211,7 @@ export default function HowItWorks() {
                         title="Review generated patch"
                         delay={0.3}
                         video={ReviewPatchVideo}
+                        onExpand={handleExpand}
                         description={
                             <p>
                                 Inspect the color-coded diff to see exactly what lines are added or removed.
@@ -119,6 +224,7 @@ export default function HowItWorks() {
                         title="Apply or reject"
                         delay={0.4}
                         video={ApplyRejectVideo}
+                        onExpand={handleExpand}
                         description={
                             <p>
                                 One click to merge the code into your project or discard it completely.
