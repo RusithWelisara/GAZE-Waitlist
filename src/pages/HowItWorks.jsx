@@ -1,11 +1,17 @@
 
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileCode, CheckCircle, Shield, GitCommit } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 
-const Step = ({ number, title, description, icon: Icon, delay }) => (
+// Import workflow videos
+import SelectFilesVideo from '../assets/How It Works/Select Files.mp4';
+import DescribeChangeVideo from '../assets/How It Works/Describe Change.mp4';
+import ReviewPatchVideo from '../assets/How It Works/Review Patch.mp4';
+import ApplyRejectVideo from '../assets/How It Works/Apply OR Reject.mp4';
+
+const Step = ({ number, title, description, video, delay }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -38,11 +44,15 @@ const Step = ({ number, title, description, icon: Icon, delay }) => (
                         {description}
                     </div>
 
-                    <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6 min-h-[200px] flex items-center justify-center">
-                        <div className="text-zinc-600 text-sm">
-                            {/* Placeholder for visual/diagram */}
-                            <Icon className="w-16 h-16 opacity-20" />
-                        </div>
+                    <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl overflow-hidden min-h-[200px] flex items-center justify-center">
+                        <video
+                            src={video}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-auto"
+                        />
                     </div>
                 </div>
             </div>
@@ -72,7 +82,7 @@ export default function HowItWorks() {
                         number="1"
                         title="Select file or scope"
                         delay={0.1}
-                        icon={FileCode}
+                        video={SelectFilesVideo}
                         description={
                             <p>
                                 Choose the script you want to modify directly in the Godot or Gaze editor.
@@ -84,7 +94,7 @@ export default function HowItWorks() {
                         number="2"
                         title="Describe change"
                         delay={0.2}
-                        icon={GitCommit}
+                        video={DescribeChangeVideo}
                         description={
                             <p>
                                 Tell Gaze what you want to do in natural language (e.g., "Add a double jump").
@@ -96,7 +106,7 @@ export default function HowItWorks() {
                         number="3"
                         title="Review generated patch"
                         delay={0.3}
-                        icon={Shield}
+                        video={ReviewPatchVideo}
                         description={
                             <p>
                                 Inspect the color-coded diff to see exactly what lines are added or removed.
@@ -108,7 +118,7 @@ export default function HowItWorks() {
                         number="4"
                         title="Apply or reject"
                         delay={0.4}
-                        icon={CheckCircle}
+                        video={ApplyRejectVideo}
                         description={
                             <p>
                                 One click to merge the code into your project or discard it completely.
