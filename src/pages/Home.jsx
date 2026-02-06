@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert } from "lucide-react";
+import DiffImg from "../assets/Diff.png";
 
 export default function Home() {
     useEffect(() => {
@@ -194,58 +195,11 @@ export default function Home() {
                     </div>
 
                     <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl relative">
-                        {/* Fake Window Header */}
-                        <div className="bg-zinc-900 px-4 py-2 border-b border-zinc-800 flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                            <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/50"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
-                            <span className="text-xs text-zinc-500 ml-2 font-mono">Godot Engine - GazeAI Patch View</span>
-                        </div>
-
-                        {/* Mock Interface Content */}
-                        <div className="flex flex-col md:flex-row h-[500px] font-mono text-sm">
-                            {/* Left Pane: Prompt */}
-                            <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 p-4 bg-zinc-900/30 flex flex-col">
-                                <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold mb-4">Request</div>
-                                <div className="bg-zinc-950 p-3 rounded text-zinc-300 mb-4 border border-zinc-800">
-                                    "Make the player character move faster when holding shift"
-                                </div>
-                                <p className="text-[10px] text-zinc-500 leading-relaxed">
-                                    Analyzing player.gd...<br />
-                                    Found movement logic.<br />
-                                    Generating patch...
-                                </p>
-                                <div className="mt-auto">
-                                    <div className="p-2 bg-violet-600/20 text-violet-400 border border-violet-500/30 text-center rounded text-xs font-bold">Patch Ready</div>
-                                </div>
-                            </div>
-
-                            {/* Right Pane: Diff */}
-                            <div className="flex-1 p-4 bg-zinc-950 overflow-y-auto">
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Unified Diff: player.gd</div>
-                                    <div className="flex gap-2">
-                                        <span className="px-2 py-1 bg-red-500/10 text-red-500 rounded text-[10px] border border-red-500/20 uppercase font-bold">Reject</span>
-                                        <span className="px-2 py-1 bg-green-500/10 text-green-500 rounded text-[10px] border border-green-500/20 uppercase font-bold">Apply</span>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-1 text-[12px]">
-                                    <div className="text-zinc-500 px-2"> func _physics_process(delta):</div>
-                                    <div className="text-zinc-500 px-2"> &nbsp;&nbsp;&nbsp;&nbsp;var input_dir = Input.get_vector("left", "right", "up", "down")</div>
-                                    <div className="bg-red-500/10 text-red-400 px-2 border-l-2 border-red-500">
-                                        -&nbsp;&nbsp;&nbsp;&nbsp;velocity = input_dir * SPEED
-                                    </div>
-                                    <div className="bg-green-500/10 text-green-400 px-2 border-l-2 border-green-500">
-                                        +&nbsp;&nbsp;&nbsp;&nbsp;var current_speed = SPEED * 2.0 if Input.is_action_pressed("shift") else SPEED
-                                    </div>
-                                    <div className="bg-green-500/10 text-green-400 px-2 border-l-2 border-green-500">
-                                        +&nbsp;&nbsp;&nbsp;&nbsp;velocity = input_dir * current_speed
-                                    </div>
-                                    <div className="text-zinc-500 px-2"> &nbsp;&nbsp;&nbsp;&nbsp;move_and_slide()</div>
-                                </div>
-                            </div>
-                        </div>
+                        <img
+                            src={DiffImg}
+                            alt="AI Code Editor Diff View"
+                            className="w-full h-auto"
+                        />
                     </div>
                 </div>
             </section>
