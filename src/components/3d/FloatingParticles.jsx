@@ -2,7 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export default function FloatingParticles({ count = 100 }) {
+export default function FloatingParticles({ count = 100, opacity = 1 }) {
     const meshRef = useRef();
 
     const particles = useMemo(() => {
@@ -66,7 +66,7 @@ export default function FloatingParticles({ count = 100 }) {
             <meshStandardMaterial
                 color="#8b5cf6"
                 transparent
-                opacity={0.3} // More subtle
+                opacity={0.3 * opacity} // Apply global opacity
                 roughness={0.2}
             />
         </instancedMesh>

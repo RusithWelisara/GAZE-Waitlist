@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { MeshDistortMaterial, GradientTexture } from '@react-three/drei';
+import { MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-export default function HeroGeometry() {
+export default function HeroGeometry({ opacity = 1 }) {
     const groupRef = useRef();
     const [hovered, setHover] = useState(false);
 
@@ -27,14 +27,9 @@ export default function HeroGeometry() {
 
             // Scroll interaction: Parallax move + Fade out
             const scrollY = window.scrollY;
-            const scrollThreshold = 500; // Pixel value where it should be fully gone
 
             // Move slower than scroll (parallax)
             groupRef.current.position.y = -scrollY * 0.002;
-
-            // Fade out logic logic requires material access, but we can scale down to zero/hide
-            // or we'd need to control material opacity via state or ref.
-            // Simple approach: Move it away quickly after threshold or scale down.
 
             if (scrollY > 100) {
                 const fade = Math.max(0, 1 - (scrollY - 100) / 400);
@@ -53,7 +48,7 @@ export default function HeroGeometry() {
                 distort={0.2} // Less distortion to keep cube shape
                 roughness={0.2}
                 transparent={true}
-                opacity={0.6}
+                opacity={0.6 * opacity} // Apply global opacity
                 wireframe={true}
             />
         </mesh>

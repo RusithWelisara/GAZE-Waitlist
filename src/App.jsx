@@ -9,6 +9,7 @@ import Install from "./pages/Install";
 import Demo from "./pages/Demo";
 import Trust from "./pages/Trust";
 import Waitlist from "./pages/Waitlist";
+import BackgroundWrapper from "./components/3d/BackgroundWrapper";
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -43,6 +44,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen text-foreground font-sans selection:bg-violet-500/20">
+        <BackgroundWrapper />
         <Navbar />
         <main>
           <AnimatedRoutes />
