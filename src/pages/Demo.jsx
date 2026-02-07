@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import DemoVideo from '../assets/Demo.mp4';
 
 export default function Demo() {
     useEffect(() => {
@@ -30,17 +31,12 @@ export default function Demo() {
                     className="relative aspect-video bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl group"
                 >
                     {/* Placeholder Content - Replace src with actual video when available */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
-                        <div className="text-center space-y-4">
-                            <div className="w-20 h-20 rounded-full bg-violet-600/20 text-violet-500 border border-violet-500/30 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                                <Play className="w-8 h-8 fill-current" />
-                            </div>
-                            <p className="text-zinc-500 font-mono text-sm">
-                                [DEMO VIDEO PLACEHOLDER]<br />
-                                Please record a 60-90s walkthrough
-                            </p>
-                        </div>
-                    </div>
+                    <video
+                        src={DemoVideo}
+                        className="w-full h-full object-cover"
+                        controls
+                        playsInline
+                    />
                 </motion.div>
 
                 {/* Context / Caption */}
