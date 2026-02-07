@@ -42,7 +42,7 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-background text-foreground font-sans selection:bg-violet-500/20">
+      <div className="min-h-screen text-foreground font-sans selection:bg-violet-500/20">
         <Navbar />
         <main>
           <AnimatedRoutes />
