@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Features from "./pages/Features";
 import HowItWorks from "./pages/HowItWorks";
 import Install from "./pages/Install";
+import Demo from "./pages/Demo";
 import Trust from "./pages/Trust";
 import Waitlist from "./pages/Waitlist";
 
@@ -29,6 +30,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
         <Route path="/how-it-works" element={<PageWrapper><HowItWorks /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
+        <Route path="/demo" element={<PageWrapper><Demo /></PageWrapper>} />
         <Route path="/install" element={<PageWrapper><Install /></PageWrapper>} />
         <Route path="/trust" element={<PageWrapper><Trust /></PageWrapper>} />
         <Route path="/waitlist" element={<PageWrapper><Waitlist /></PageWrapper>} />
