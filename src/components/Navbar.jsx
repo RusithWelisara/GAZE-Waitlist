@@ -18,7 +18,7 @@ export default function Navbar() {
 
     const links = [
         { name: "How It Works", path: "/how-it-works" },
-        { name: "Demo", path: "/features" },
+        { name: "Demo", path: "/demo" },
         { name: "Safety", path: "/trust" },
         { name: "Docs", path: "/install" },
     ];

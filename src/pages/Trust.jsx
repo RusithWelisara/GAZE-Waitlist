@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { ShieldCheck, Lock, EyeOff, ServerOff, FileText } from 'lucide-react';
+import { ShieldCheck, Lock, EyeOff, ServerOff, FileText, ArrowRight } from 'lucide-react';
 
 const TrustPoint = ({ icon: Icon, title, description }) => (
     <div className="bg-zinc-900/30 border border-zinc-800 rounded-xl p-6 hover:bg-zinc-900/50 transition-colors">
@@ -69,6 +69,59 @@ export default function Trust() {
                             GazeAI is designed to be a <b>transparent interface</b> between you and the LLM.
                             You see the prompt we send. You see the diff we receive. You control the merge.
                         </p>
+                    </div>
+                </div>
+
+                {/* Architecture Diagram */}
+                <div className="space-y-8 pt-12 border-t border-zinc-800">
+                    <h2 className="text-3xl font-bold text-center text-white">How it Works Under the Hood</h2>
+                    <div className="bg-zinc-950 p-8 rounded-2xl border border-zinc-800 overflow-x-auto">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[600px]">
+                            {/* Step 1 */}
+                            <div className="text-center space-y-2 flex-1">
+                                <div className="w-16 h-16 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mx-auto">
+                                    <FileText className="w-8 h-8 text-zinc-400" />
+                                </div>
+                                <h4 className="text-white font-bold">1. Your Code</h4>
+                                <p className="text-xs text-zinc-500">Local Files</p>
+                            </div>
+
+                            <ArrowRight className="text-zinc-600 w-6 h-6 rotate-90 md:rotate-0" />
+
+                            {/* Step 2 */}
+                            <div className="text-center space-y-2 flex-1">
+                                <div className="w-16 h-16 rounded-xl bg-violet-900/20 border border-violet-500/50 flex items-center justify-center mx-auto">
+                                    <ShieldCheck className="w-8 h-8 text-violet-400" />
+                                </div>
+                                <h4 className="text-white font-bold">2. Gaze Plugin</h4>
+                                <p className="text-xs text-zinc-500">Local Context Parsing</p>
+                            </div>
+
+                            <div className="flex flex-col items-center gap-1">
+                                <span className="text-[10px] text-zinc-500 uppercase font-mono">Encrypted</span>
+                                <ArrowRight className="text-zinc-600 w-6 h-6 rotate-90 md:rotate-0" />
+                            </div>
+
+                            {/* Step 3 */}
+                            <div className="text-center space-y-2 flex-1">
+                                <div className="w-16 h-16 rounded-xl bg-indigo-900/20 border border-indigo-500/50 flex items-center justify-center mx-auto">
+                                    <ServerOff className="w-8 h-8 text-indigo-400" />
+                                </div>
+                                <h4 className="text-white font-bold">3. LLM API</h4>
+                                <p className="text-xs text-zinc-500">OpenAI / Anthropic / Local</p>
+                            </div>
+
+                            <ArrowRight className="text-zinc-600 w-6 h-6 rotate-90 md:rotate-0" />
+
+                            {/* Step 4 */}
+                            <div className="text-center space-y-2 flex-1">
+                                <div className="w-16 h-16 rounded-xl bg-green-900/20 border border-green-500/50 flex items-center justify-center mx-auto">
+                                    <FileText className="w-8 h-8 text-green-400" />
+                                </div>
+                                <h4 className="text-white font-bold">4. Diff View</h4>
+                                <p className="text-xs text-zinc-500">Review & Apply</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

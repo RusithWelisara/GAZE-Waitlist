@@ -1,12 +1,24 @@
 
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import Button from "../components/ui/Button";
-import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert } from "lucide-react";
-import DiffImg from "../assets/Diff.png";
+import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert, ChevronLeft, ChevronRight } from "lucide-react";
+import DiffImg1 from "../assets/Screenshots/Diff.png";
+import DiffImg2 from "../assets/Screenshots/Diff 2.png";
 
 export default function Home() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const diffImages = [DiffImg1, DiffImg2];
+
+    // Auto-rotate slideshow
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % diffImages.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [diffImages.length]);
+
     useEffect(() => {
         document.title = "GAZE — Safe AI Code Patching for Godot Developers";
     }, []);
@@ -186,6 +198,55 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* 3.5. COMPARISON TABLE */}
+            <section className="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+                <div className="max-w-5xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-white mb-4">Why GAZE is Different</h2>
+                        <p className="text-zinc-500">Built specifically for the Godot workflow, not just general coding.</p>
+                    </div>
+
+                    <div className="overflow-x-auto">
+                        <table className="w-full border-collapse">
+                            <thead>
+                                <tr className="border-b border-zinc-800">
+                                    <th className="text-left py-4 px-6 text-zinc-500 font-medium">Feature</th>
+                                    <th className="text-left py-4 px-6 text-violet-400 font-bold bg-violet-500/5 border-t-2 border-violet-500">GAZE</th>
+                                    <th className="text-left py-4 px-6 text-zinc-500 font-medium">Copilot / Cursor</th>
+                                    <th className="text-left py-4 px-6 text-zinc-500 font-medium">ChatGPT Website</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-sm">
+                                <tr className="border-b border-zinc-800/50 hover:bg-zinc-900/20">
+                                    <td className="py-4 px-6 text-white font-medium">Integration</td>
+                                    <td className="py-4 px-6 text-zinc-300 bg-violet-500/5">Native Godot Editor Panel</td>
+                                    <td className="py-4 px-6 text-zinc-500">VS Code / JetBrains</td>
+                                    <td className="py-4 px-6 text-zinc-500">Browser Tab (context switching)</td>
+                                </tr>
+                                <tr className="border-b border-zinc-800/50 hover:bg-zinc-900/20">
+                                    <td className="py-4 px-6 text-white font-medium">Change Visibility</td>
+                                    <td className="py-4 px-6 text-zinc-300 bg-violet-500/5">Full Unified Diff (Before/After)</td>
+                                    <td className="py-4 px-6 text-zinc-500">Auto-complete / Streamed text</td>
+                                    <td className="py-4 px-6 text-zinc-500">Copy-Paste required</td>
+                                </tr>
+                                <tr className="border-b border-zinc-800/50 hover:bg-zinc-900/20">
+                                    <td className="py-4 px-6 text-white font-medium">Safety</td>
+                                    <td className="py-4 px-6 text-zinc-300 bg-violet-500/5">No hidden deletions. Reject button.</td>
+                                    <td className="py-4 px-6 text-zinc-500">Can hallucinate/delete code</td>
+                                    <td className="py-4 px-6 text-zinc-500">Manual review required</td>
+                                </tr>
+                                <tr className="border-b border-zinc-800/50 hover:bg-zinc-900/20">
+                                    <td className="py-4 px-6 text-white font-medium">Godot Context</td>
+                                    <td className="py-4 px-6 text-zinc-300 bg-violet-500/5">Scene & Node Aware (Planned)</td>
+                                    <td className="py-4 px-6 text-zinc-500">Text-file aware only</td>
+                                    <td className="py-4 px-6 text-zinc-500">None</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
             {/* 4. VISUAL PROOF (Focused Flow Mockup) */}
             <section className="px-6 py-24 bg-zinc-900/10">
                 <div className="max-w-5xl mx-auto">
@@ -195,11 +256,50 @@ export default function Home() {
                     </div>
 
                     <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl relative">
-                        <img
-                            src={DiffImg}
-                            alt="AI Code Editor Diff View"
-                            className="w-full h-auto"
-                        />
+                        {/* Slideshow Container */}
+                        <div className="relative">
+                            <AnimatePresence mode="wait">
+                                <motion.img
+                                    key={currentSlide}
+                                    src={diffImages[currentSlide]}
+                                    alt={`AI Code Editor Diff View ${currentSlide + 1}`}
+                                    className="w-full h-auto"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                />
+                            </AnimatePresence>
+
+                            {/* Navigation Arrows */}
+                            <button
+                                onClick={() => setCurrentSlide((prev) => (prev - 1 + diffImages.length) % diffImages.length)}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white/80 hover:text-white p-2 rounded-full transition-colors"
+                                aria-label="Previous slide"
+                            >
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
+                            <button
+                                onClick={() => setCurrentSlide((prev) => (prev + 1) % diffImages.length)}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white/80 hover:text-white p-2 rounded-full transition-colors"
+                                aria-label="Next slide"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
+
+                            {/* Slide Indicators */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                                {diffImages.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentSlide(index)}
+                                        className={`w-2 h-2 rounded-full transition-colors ${currentSlide === index ? 'bg-violet-500' : 'bg-white/30 hover:bg-white/50'
+                                            }`}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
