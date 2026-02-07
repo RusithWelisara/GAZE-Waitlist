@@ -7,7 +7,6 @@ import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert, ChevronLeft, C
 import DiffImg1 from "../assets/Screenshots/Diff.png";
 import DiffImg2 from "../assets/Screenshots/Diff 2.png";
 import HeroVideo from "../assets/Hero.mp4";
-import Scene from "../components/3d/Scene";
 
 export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -36,7 +35,6 @@ export default function Home() {
 
     return (
         <div className="min-h-screen text-foreground overflow-x-hidden relative">
-            <Scene />
             <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 z-10">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-background to-background pointer-events-none"></div>
                 <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-16 items-center">
