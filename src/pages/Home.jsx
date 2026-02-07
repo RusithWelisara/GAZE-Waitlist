@@ -6,6 +6,7 @@ import Button from "../components/ui/Button";
 import { ArrowRight, Check, X, FileDiff, ShieldAlert, BadgeAlert, ChevronLeft, ChevronRight } from "lucide-react";
 import DiffImg1 from "../assets/Screenshots/Diff.png";
 import DiffImg2 from "../assets/Screenshots/Diff 2.png";
+import HeroVideo from "../assets/Hero.mp4";
 
 export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -28,50 +29,85 @@ export default function Home() {
             {/* 1. HERO SECTION */}
             <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-background to-background pointer-events-none"></div>
-                <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
-                    >
-                        Make AI changes to your Godot project — safely, visibly, and reversibly.
-                    </motion.h1>
+                <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="text-left space-y-8">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
+                        >
+                            Make AI changes to your Godot project — safely, visibly, and reversibly.
+                        </motion.h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto"
-                    >
-                        GAZE generates <span className="text-zinc-200 font-semibold">reviewable code patches</span>, not blind edits.
-                        You see the diff. You approve it. Nothing touches your project without consent.
-                    </motion.p>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-xl text-zinc-400 mb-8 max-w-2xl"
+                        >
+                            GAZE generates <span className="text-zinc-200 font-semibold">reviewable code patches</span>, not blind edits.
+                            You see the diff. You approve it. Nothing touches your project without consent.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="flex flex-col sm:flex-row items-center gap-4"
+                        >
+                            <Link to="/waitlist" className="w-full sm:w-auto">
+                                <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20" aria-label="Join the Early Access Waitlist">
+                                    Join the Early Access Waitlist
+                                </Button>
+                            </Link>
+                            <Link to="/how-it-works" className="w-full sm:w-auto">
+                                <Button variant="secondary" className="text-lg px-8 py-4 w-full sm:w-auto border border-zinc-700 hover:bg-zinc-800" aria-label="See How Safe Patching Works">
+                                    See How Works
+                                </Button>
+                            </Link>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-xs text-zinc-500 uppercase tracking-widest font-mono"
+                        >
+                            Not yet released. Manual invite only.
+                        </motion.div>
+                    </div>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        initial={{ opacity: 0, scale: 0.95, x: 20 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                        className="relative"
                     >
-                        <Link to="/waitlist" className="w-full sm:w-auto">
-                            <Button variant="primary" className="text-lg px-8 py-4 w-full sm:w-auto shadow-xl shadow-violet-500/20" aria-label="Join the Early Access Waitlist">
-                                Join the Early Access Waitlist
-                            </Button>
-                        </Link>
-                        <Link to="/how-it-works" className="w-full sm:w-auto">
-                            <Button variant="secondary" className="text-lg px-8 py-4 w-full sm:w-auto border border-zinc-700 hover:bg-zinc-800" aria-label="See How Safe Patching Works">
-                                See How Safe Patching Works
-                            </Button>
-                        </Link>
-                    </motion.div>
+                        {/* Professional Window Frame */}
+                        <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-[0_0_50px_-12px_rgba(139,92,246,0.5)] relative">
+                            {/* Fake Header */}
+                            <div className="bg-zinc-900 px-4 py-2.5 border-b border-zinc-800 flex items-center justify-between">
+                                <div className="flex gap-1.5">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/20 border border-amber-500/50"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                                </div>
+                                <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-wider">GAZE Editor Integration</span>
+                                <div className="w-10"></div> {/* Spacer for symmetry */}
+                            </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="mt-8 text-xs text-zinc-500 uppercase tracking-widest font-mono"
-                    >
-                        Not yet released. Manual invite only.
+                            <video
+                                src={HeroVideo}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-auto brightness-90 contrast-110"
+                            />
+                        </div>
+
+                        {/* Decorative side lights/glows */}
+                        <div className="absolute -inset-4 bg-violet-500/10 blur-3xl -z-10 rounded-full"></div>
                     </motion.div>
                 </div>
             </section>
